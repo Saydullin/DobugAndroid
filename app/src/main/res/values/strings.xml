@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">CodeHub</string>
     <string name="views_cd">просмотры</string>
+    <string name="search_cd">поиск</string>
+    <string name="clear_cd">удалить</string>
     <string name="comments_cd">комментарии</string>
 </resources>

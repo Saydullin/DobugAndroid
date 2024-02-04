@@ -1,4 +1,4 @@
-package com.saydullin.codehub
+package com.saydullin.codehub.presentation.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,9 @@ import com.saydullin.codehub.domain.model.article.Article
 import com.saydullin.codehub.domain.model.article.ArticleAuthor
 import com.saydullin.codehub.presentation.navigation.NavController
 import com.saydullin.codehub.presentation.theme.ui.CodeHubTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,9 +59,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavController(
-                        articles = articles
-                    )
+                    NavController()
                 }
             }
         }

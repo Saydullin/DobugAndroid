@@ -1,6 +1,5 @@
-package com.saydullin.codehub.presentation.component
+package com.saydullin.codehub.presentation.component.article
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -44,11 +44,10 @@ fun CardArticle(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(16.dp))
                 .clickable { onClick() }
         ) {
-            Box(modifier = Modifier
-                .clip(RoundedCornerShape(16.dp))
+            Box(
+                modifier = Modifier
             ) {
                 GlideImage(
                     modifier = Modifier
@@ -67,7 +66,7 @@ fun CardArticle(
                     text = data.title,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(
                     modifier = Modifier.height(16.dp)
@@ -76,7 +75,7 @@ fun CardArticle(
                     text = data.description,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,
-                    style = MaterialTheme.typography.labelMedium
+                    style = MaterialTheme.typography.bodyLarge
                 )
                 Spacer(
                     modifier = Modifier.height(16.dp)
@@ -90,6 +89,21 @@ fun CardArticle(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
+                        Box(modifier = Modifier
+                            .clip(RoundedCornerShape(50.dp))
+                        ) {
+                            GlideImage(
+                                modifier = Modifier
+                                    .width(30.dp)
+                                    .height(30.dp),
+                                contentScale = ContentScale.Crop,
+                                model = data.author.profileImageUrl,
+                                contentDescription = data.author.firstName,
+                            )
+                        }
+                        Spacer(
+                            modifier = Modifier.width(10.dp)
+                        )
                         Text(
                             text = data.author.nickName,
                             style = MaterialTheme.typography.labelMedium
@@ -98,14 +112,14 @@ fun CardArticle(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        Image(
+                        Icon(
                             modifier = Modifier
                                 .width(20.dp)
                                 .height(20.dp)
                                 .alpha(.5f),
                             painter = painterResource(R.drawable.views),
                             contentDescription = stringResource(R.string.views_cd),
-                            contentScale = ContentScale.Crop,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
                         Spacer(
                             modifier = Modifier.width(5.dp)
@@ -117,14 +131,14 @@ fun CardArticle(
                         Spacer(
                             modifier = Modifier.width(15.dp)
                         )
-                        Image(
+                        Icon(
                             modifier = Modifier
                                 .width(20.dp)
                                 .height(20.dp)
                                 .alpha(.5f),
                             painter = painterResource(R.drawable.comments),
                             contentDescription = stringResource(R.string.comments_cd),
-                            contentScale = ContentScale.Crop,
+                            tint = MaterialTheme.colorScheme.onPrimaryContainer,
                         )
                         Spacer(
                             modifier = Modifier.width(5.dp)

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.android'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
@@ -59,6 +60,9 @@ dependencies {
     implementation composeBom
     androidTestImplementation composeBom
 
+    implementation "com.google.dagger:hilt-android:2.48.1"
+    kapt "com.google.dagger:hilt-compiler:2.48.1"
+
     implementation "androidx.navigation:navigation-compose:2.7.6"
     implementation "androidx.compose.material3:material3:1.1.2"
     implementation "androidx.compose.material3:material3-window-size-class:1.1.2"
@@ -105,3 +109,5 @@ dependencies {
 kapt {
     correctErrorTypes true
 }
+
+

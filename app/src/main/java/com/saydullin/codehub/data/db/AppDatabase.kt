@@ -22,3 +22,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun articleDao(): ArticleDao
 
 }
+
+
