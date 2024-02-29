@@ -1,6 +1,8 @@
-package com.saydullin.codehub.domain.model.article
+package com.saydullin.codehub.domain.model.article.news
 
-data class Article(
+import com.saydullin.codehub.domain.model.article.ArticleAuthor
+
+data class NewsArticle(
     val id: Int,
     val imageUrl: String,
     val author: ArticleAuthor,

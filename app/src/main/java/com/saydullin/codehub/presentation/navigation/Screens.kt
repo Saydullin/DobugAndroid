@@ -14,46 +14,53 @@ sealed class Screen(
         fun getBottomBarScreens(): List<Screen> {
             return listOf(
                 News,
-                Blog,
                 Search,
-                Questions,
-                Profile
+                Bugs,
+                Blog,
+                Profile,
             )
         }
     }
 
-    object News: Screen(
+    object News : Screen(
         route = "news",
         title = "News",
         icon = R.drawable.home,
         activeIcon = 0,
         isActive = false,
     )
-    object Blog: Screen(
+    object Blog : Screen(
         route = "blog",
         title = "Blog",
-        icon = R.drawable.blog,
+        icon = R.drawable.ic_blog,
         activeIcon = 0,
         isActive = false,
     )
-    object Search: Screen(
+    object Search : Screen(
         route = "search",
         title = "Search",
-        icon = R.drawable.search,
+        icon = R.drawable.ic_search,
         activeIcon = 0,
         isActive = false,
     )
-    object Questions: Screen(
-        route = "my_questions",
-        title = "Questions",
-        icon = R.drawable.question,
+    object Bugs : Screen(
+        route = "bugs",
+        title = "Bugs",
+        icon = R.drawable.ic_bug,
         activeIcon = 0,
         isActive = false,
     )
-    object Profile: Screen(
+    object BugInfo : Screen(
+        route = "bugInfo",
+        title = "Bug Info",
+        icon = R.drawable.ic_bug,
+        activeIcon = 0,
+        isActive = false,
+    )
+    object Profile : Screen(
         route = "profile",
         title = "Profile",
-        icon = R.drawable.profile,
+        icon = R.drawable.ic_profile,
         activeIcon = 0,
         isActive = false,
     )
