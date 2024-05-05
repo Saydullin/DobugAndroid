@@ -1,6 +1,5 @@
 package com.saydullin.codehub.presentation.navigation
 
-import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.tween
@@ -12,7 +11,6 @@ import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
@@ -21,29 +19,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.domain.model.article.Article
-import com.saydullin.codehub.presentation.component.article.ArticleSearch
-import com.saydullin.codehub.presentation.screen.NewsScreen
-import com.saydullin.codehub.presentation.screen.SearchScreen
+import com.saydullin.codehub.presentation.screen.blog.BlogScreen
+import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
+import com.saydullin.codehub.presentation.screen.bug.BugScreen
+import com.saydullin.codehub.presentation.screen.newBug.NewBugScreen
+import com.saydullin.codehub.presentation.screen.news.NewsScreen
+import com.saydullin.codehub.presentation.screen.search.SearchScreen
 
 @Composable
 fun NavController() {
 
-    val ctx = LocalContext.current
     val navController = rememberNavController()
-    val selectedItem = remember { mutableIntStateOf(2) }
     val screens = Screen.getBottomBarScreens()
-
-    Toast.makeText(ctx, "Updated", Toast.LENGTH_SHORT).show()
+    val selectedItem = remember { mutableIntStateOf(screens.indexOf(Screen.Bugs)) }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -59,7 +54,6 @@ fun NavController() {
                                 painter = painterResource(item.icon),
                                 contentDescription = item.title,
                                 contentScale = ContentScale.Crop,
-                                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onPrimaryContainer),
                             )
                         },
                         label = {
@@ -99,28 +93,42 @@ fun NavController() {
             modifier = Modifier
                 .padding(bottom = paddingValues.calculateBottomPadding()),
             navController = navController,
-            startDestination = Screen.Search.route
+            startDestination = Screen.Bugs.route
         ) {
             composable(Screen.News.route) {
-                NewsScreen()
+                NewsScreen(
+                    navController = navController
+                )
+            }
+            composable(Screen.BugInfo.route) {
+                BugInfoScreen(
+                    navController = navController
+                )
             }
             composable(Screen.Blog.route) {
-                Text(
-                    text = "Blog, Saydullin!"
+                BlogScreen(
+                    navController = navController
                 )
             }
             composable(Screen.Search.route) {
-                SearchScreen()
+                SearchScreen(
+                    navController = navController
+                )
             }
-            composable(Screen.Questions.route) {
-                Text(
-                    text = "Questions, Saydullin!"
+            composable(Screen.Bugs.route) {
+                BugScreen(
+                    navController = navController
+                )
+            }
+            composable(Screen.NewBug.route) {
+                NewBugScreen(
+                    navController = navController
                 )
             }
             composable(Screen.Profile.route) {
-                Text(
-                    text = "Profile, Saydullin!"
-                )
+//                Text(
+//                    text = "Profile, Saydullin!"
+//                )
             }
         }
     }

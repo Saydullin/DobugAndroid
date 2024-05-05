@@ -5,7 +5,9 @@ import androidx.room.Room
 import com.saydullin.codehub.data.db.AppDatabase
 import com.saydullin.codehub.data.db.dao.ArticleDao
 import com.saydullin.codehub.data.repository.ArticleRepositoryImpl
+import com.saydullin.codehub.data.repository.BugArticleRepositoryImpl
 import com.saydullin.codehub.domain.repository.ArticleRepository
+import com.saydullin.codehub.domain.repository.BugArticleRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,6 +46,14 @@ class DataModule {
     ): ArticleRepository {
         return ArticleRepositoryImpl(
             articleDao = articleDao,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideBugArticleRepository(
+    ): BugArticleRepository {
+        return BugArticleRepositoryImpl(
         )
     }
 

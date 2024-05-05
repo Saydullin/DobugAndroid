@@ -8,7 +8,11 @@ data class ArticleAuthor(
     val userName: String,
     val nickName: String,
     val profileImageUrl: String,
+    val useful: Int,
+    val answers: Int,
+    val tags: List<ArticleTag>,
     val registrationDate: Long,
+    val updatedDate: Long,
 ) {
 
     fun getFullName(): String {
@@ -16,5 +20,3 @@ data class ArticleAuthor(
     }
 
 }
-
-

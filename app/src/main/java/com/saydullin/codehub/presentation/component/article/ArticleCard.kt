@@ -28,13 +28,13 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.saydullin.codehub.R
-import com.saydullin.codehub.domain.model.article.Article
+import com.saydullin.codehub.domain.model.article.news.NewsArticle
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun CardArticle(
     modifier: Modifier = Modifier,
-    data: Article,
+    data: NewsArticle,
     onClick: () -> Unit
 ) {
 
@@ -117,7 +117,7 @@ fun CardArticle(
                                 .width(20.dp)
                                 .height(20.dp)
                                 .alpha(.5f),
-                            painter = painterResource(R.drawable.views),
+                            painter = painterResource(R.drawable.ic_views),
                             contentDescription = stringResource(R.string.views_cd),
                             tint = MaterialTheme.colorScheme.onPrimaryContainer
                         )
@@ -136,7 +136,7 @@ fun CardArticle(
                                 .width(20.dp)
                                 .height(20.dp)
                                 .alpha(.5f),
-                            painter = painterResource(R.drawable.comments),
+                            painter = painterResource(R.drawable.ic_comments),
                             contentDescription = stringResource(R.string.comments_cd),
                             tint = MaterialTheme.colorScheme.onPrimaryContainer,
                         )

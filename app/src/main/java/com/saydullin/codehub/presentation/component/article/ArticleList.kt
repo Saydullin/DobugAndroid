@@ -10,12 +10,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.saydullin.codehub.domain.model.article.Article
+import com.saydullin.codehub.domain.model.article.news.NewsArticle
 
 @Composable
 fun ArticleList() {
 
-    val articles = remember { mutableStateOf<List<Article>>(listOf()) }
+    val articles = remember { mutableStateOf<List<NewsArticle>>(listOf()) }
 
     LazyColumn(
         contentPadding = PaddingValues(vertical = 20.dp),

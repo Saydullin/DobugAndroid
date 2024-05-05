@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">CodeHub</string>
+    <string name="bug_filter_pretext">Фильтр тегов: </string>
     <string name="views_cd">просмотры</string>
     <string name="search_cd">поиск</string>
     <string name="clear_cd">удалить</string>
     <string name="comments_cd">комментарии</string>
+    <string name="bug_status_open">open</string>
+    <string name="bug_status_solved">solved</string>
+    <string name="bug_status_closed">closed</string>
 </resources>
