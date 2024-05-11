@@ -217,11 +217,13 @@ fun ProjectsScreen(
 
     CodeHubScreen(
         title = ctx.getString(R.string.projects_title),
+        appBarModifier = Modifier
+            .padding(16.dp)
     ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth(),
-            contentPadding = PaddingValues(bottom = 16.dp),
+            contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(projects) { project ->
