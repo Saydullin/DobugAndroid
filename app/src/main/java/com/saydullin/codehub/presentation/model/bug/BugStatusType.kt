@@ -1,6 +1,6 @@
 package com.saydullin.codehub.presentation.model.bug
 
-enum class BugStatus {
+enum class BugStatusType {
     OPEN,
     SOLVED,
     CLOSED,

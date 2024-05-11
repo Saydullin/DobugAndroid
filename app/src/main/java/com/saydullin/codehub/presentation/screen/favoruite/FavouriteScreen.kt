@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.screen.newBug
+package com.saydullin.codehub.presentation.screen.favoruite
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
@@ -8,13 +8,13 @@ import com.saydullin.codehub.R
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
 
 @Composable
-fun NewBugScreen(
+fun FavouriteScreen(
     navController: NavController = rememberNavController()
 ) {
     val ctx = LocalContext.current
 
     CodeHubScreen(
-        title = ctx.getString(R.string.newBug_title),
+        title = ctx.getString(R.string.favourite_title),
     ) {
 
     }

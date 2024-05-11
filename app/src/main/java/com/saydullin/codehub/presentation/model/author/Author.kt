@@ -1,6 +1,8 @@
-package com.saydullin.codehub.domain.model.article
+package com.saydullin.codehub.presentation.model.author
 
-data class ArticleAuthor(
+import com.saydullin.codehub.domain.model.article.ArticleTag
+
+data class Author(
     val id: Int,
     val firstName: String,
     val middleName: String,
@@ -14,12 +16,6 @@ data class ArticleAuthor(
     val bio: String,
     val regDate: Long,
     val updatedDate: Long,
-) {
-
-    fun getFullName(): String {
-        return "$firstName $middleName $lastName".trim()
-    }
-
-}
+)
 
 

@@ -8,4 +8,11 @@
     <string name="bug_status_open">open</string>
     <string name="bug_status_solved">solved</string>
     <string name="bug_status_closed">closed</string>
+
+    <!--  Screen titles  -->
+    <string name="projects_title">Projects</string>
+    <string name="notifications_title">Notifications</string>
+    <string name="favourite_title">Favourite</string>
+    <string name="profile_title">Profile</string>
+    <string name="newBug_title">Add Bug</string>
 </resources>

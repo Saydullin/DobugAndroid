@@ -2,9 +2,11 @@ package com.saydullin.codehub.presentation.component.search
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Clear
@@ -20,6 +22,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.saydullin.codehub.R
@@ -27,7 +30,8 @@ import com.saydullin.codehub.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ArticleSearch(
-    onActiveCallback: (isActiveValue: Boolean) -> Unit
+    modifier: Modifier = Modifier,
+    onActiveCallback: (isActiveValue: Boolean) -> Unit,
 ) {
 
     val query = remember { mutableStateOf("") }
@@ -38,14 +42,15 @@ fun ArticleSearch(
                 0.dp
             } else {
                 16.dp
-            }
+            },
+        label = ""
     )
 
-    Box(
-        modifier = Modifier
+    Row(
+        modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = sideMargins.value),
-        contentAlignment = Alignment.Center
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         SearchBar(
             modifier = Modifier
@@ -54,7 +59,9 @@ fun ArticleSearch(
             onQueryChange = {
                 query.value = it
             },
-            onSearch = {},
+            onSearch = {
+
+            },
             active = isActive.value,
             onActiveChange = {
                 isActive.value = it
@@ -68,7 +75,7 @@ fun ArticleSearch(
                    modifier = Modifier
                        .alpha(.5f),
                    text = "How to fix my bug ...",
-                   style = MaterialTheme.typography.bodyLarge,
+                   style = MaterialTheme.typography.titleLarge,
                )
             },
             leadingIcon = {
@@ -82,13 +89,13 @@ fun ArticleSearch(
                             },
                         imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                         contentDescription = "",
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 } else {
                     Icon(
                         imageVector = Icons.Outlined.Search,
                         contentDescription = stringResource(R.string.search_cd),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
             },
@@ -97,7 +104,7 @@ fun ArticleSearch(
                     Icon(
                         imageVector = Icons.Outlined.Clear,
                         contentDescription = stringResource(R.string.clear_cd),
-                        tint = MaterialTheme.colorScheme.onPrimaryContainer,
+                        tint = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier
                             .clickable {
                                 query.value = ""

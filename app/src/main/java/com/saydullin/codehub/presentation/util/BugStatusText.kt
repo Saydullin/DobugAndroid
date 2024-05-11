@@ -1,21 +1,21 @@
 package com.saydullin.codehub.presentation.util
 
 import com.saydullin.codehub.R
-import com.saydullin.codehub.presentation.model.bug.BugStatus
+import com.saydullin.codehub.presentation.model.bug.BugStatusType
 
 class BugStatusText {
 
     companion object {
 
-        fun getText(bugStatus: BugStatus): Int {
-            return when(bugStatus) {
-                BugStatus.OPEN -> {
+        fun getText(bugStatusType: BugStatusType): Int {
+            return when(bugStatusType) {
+                BugStatusType.OPEN -> {
                     R.string.bug_status_open
                 }
-                BugStatus.SOLVED -> {
+                BugStatusType.SOLVED -> {
                     R.string.bug_status_solved
                 }
-                BugStatus.CLOSED -> {
+                BugStatusType.CLOSED -> {
                     R.string.bug_status_closed
                 }
             }

@@ -7,7 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.presentation.component.ScreenTitle
+import com.saydullin.codehub.presentation.component.common.ScreenTitle
 
 @Composable
 fun BlogScreen(

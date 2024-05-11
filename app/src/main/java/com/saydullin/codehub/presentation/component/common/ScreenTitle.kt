@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component
+package com.saydullin.codehub.presentation.component.common
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text

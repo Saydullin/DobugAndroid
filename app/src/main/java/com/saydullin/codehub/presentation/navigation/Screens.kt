@@ -14,55 +14,78 @@ sealed class Screen(
         fun getBottomBarScreens(): List<Screen> {
             return listOf(
                 Bugs,
-                NewBug,
+                Projects,
+                Favourite,
+                Notifications,
                 Profile,
             )
         }
     }
 
-    object News : Screen(
+    data object News : Screen(
         route = "news",
         title = "News",
         icon = R.drawable.home,
         activeIcon = 0,
         isActive = false,
     )
-    object Blog : Screen(
+    data object Notifications : Screen(
+        route = "motifications",
+        title = "Notifications",
+        icon = R.drawable.ic_notifications,
+        activeIcon = 0,
+        isActive = false,
+    )
+    data object Projects : Screen(
+        route = "projects",
+        title = "Projects",
+        icon = R.drawable.ic_projects,
+        activeIcon = 0,
+        isActive = false,
+    )
+    data object Favourite : Screen(
+        route = "favourite",
+        title = "Favourite",
+        icon = R.drawable.ic_favorite,
+        activeIcon = 0,
+        isActive = false,
+    )
+    data object Blog : Screen(
         route = "blog",
         title = "Blog",
         icon = R.drawable.ic_blog,
         activeIcon = 0,
         isActive = false,
     )
-    object Search : Screen(
+    data object Search : Screen(
         route = "search",
         title = "Search",
         icon = R.drawable.ic_search,
         activeIcon = 0,
         isActive = false,
     )
-    object Bugs : Screen(
+    data object Bugs : Screen(
         route = "bugs",
         title = "Bugs",
         icon = R.drawable.ic_bug,
         activeIcon = 0,
         isActive = false,
     )
-    object NewBug : Screen(
+    data object NewBug : Screen(
         route = "new_bug",
         title = "New bug",
         icon = R.drawable.ic_add,
         activeIcon = 0,
         isActive = false,
     )
-    object BugInfo : Screen(
+    data object BugInfo : Screen(
         route = "bugInfo",
         title = "Bug Info",
         icon = R.drawable.ic_bug,
         activeIcon = 0,
         isActive = false,
     )
-    object Profile : Screen(
+    data object Profile : Screen(
         route = "profile",
         title = "Profile",
         icon = R.drawable.ic_profile,

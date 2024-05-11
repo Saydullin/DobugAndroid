@@ -6,7 +6,7 @@ import com.saydullin.codehub.domain.model.article.bug.BugAnswersArticle
 import com.saydullin.codehub.domain.model.article.bug.BugArticle
 import com.saydullin.codehub.domain.repository.BugArticleRepository
 import com.saydullin.codehub.domain.util.Resource
-import com.saydullin.codehub.presentation.model.bug.BugStatus
+import com.saydullin.codehub.presentation.model.bug.BugStatusType
 import javax.inject.Inject
 import kotlin.random.Random
 
@@ -76,12 +76,13 @@ class BugArticleRepositoryImpl @Inject constructor(
                             ArticleTag(1, "kotlin"),
                             ArticleTag(2, "coroutines"),
                         ),
-                        registrationDate = 0,
+                        regDate = 0,
                         updatedDate = 0,
+                        bio = "",
                     ),
                     isFixed = false,
                     isDeprecated = false,
-                    bugStatus = BugStatus.OPEN,
+                    bugStatusType = BugStatusType.OPEN,
                     views = Random.nextInt(523, 721),
                     answers = List(Random.nextInt(2, 58)) { BugAnswersArticle(
                         id = i,

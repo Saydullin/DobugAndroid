@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component
+package com.saydullin.codehub.presentation.component.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
