@@ -3,6 +3,8 @@ package com.saydullin.codehub.presentation.navigation
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
@@ -47,7 +49,7 @@ fun NavController() {
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
             BottomAppBar(
-                windowInsets = WindowInsets(left = 16.dp),
+                windowInsets = WindowInsets(left = 8.dp),
                 actions = {
                     screens.forEach { item ->
                         val isSelected = selectedRoute.value == item.route
@@ -82,7 +84,7 @@ fun NavController() {
                     ) {
                         Icon(
                             Icons.Filled.Add,
-                            "Localized description"
+                            contentDescription = "Localized description"
                         )
                     }
                 }
@@ -154,3 +156,5 @@ fun NavController() {
     }
 
 }
+
+

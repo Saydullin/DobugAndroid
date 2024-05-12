@@ -66,7 +66,7 @@ fun CodeHubTopBar(
                                 tint = MaterialTheme.colorScheme.onSurface
                             )
                         }
-                        Spacer(modifier = Modifier.width(10.dp))
+                        Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = title,
                             style = MaterialTheme.typography.headlineSmall,

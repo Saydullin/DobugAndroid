@@ -1,6 +1,9 @@
 package com.saydullin.codehub.presentation.screen.profile
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -21,7 +24,13 @@ fun ProfileScreen(
         appBarModifier = Modifier
             .padding(16.dp),
     ) {
-
+        Column(
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(bottom = 16.dp)
+        ) {
+            ProfileAuthScreen()
+        }
     }
 
 }
