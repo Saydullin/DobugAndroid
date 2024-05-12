@@ -1,5 +1,6 @@
 package com.saydullin.codehub.presentation.component.projects
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -23,12 +24,16 @@ import com.saydullin.codehub.presentation.model.project.Project
 @Composable
 fun ProjectCard(
     modifier: Modifier = Modifier,
-    project: Project
+    project: Project,
+    onClick: () -> Unit
 ) {
 
     Card(
         modifier = modifier
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable {
+                onClick()
+            },
     ) {
         Column(
             modifier = Modifier
@@ -67,3 +72,5 @@ fun ProjectCard(
     }
 
 }
+
+

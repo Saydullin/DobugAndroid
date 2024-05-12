@@ -230,7 +230,8 @@ fun ProjectsScreen(
                 ProjectCard(
                     modifier = Modifier
                         .padding(horizontal = 16.dp),
-                    project = project
+                    project = project,
+                    onClick = {  }
                 )
             }
         }
