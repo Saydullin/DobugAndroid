@@ -8,11 +8,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Clear
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
@@ -80,36 +82,46 @@ fun ArticleSearch(
             },
             leadingIcon = {
                 if (isActive.value) {
-                    Icon(
-                        modifier = Modifier
-                            .clickable {
-                                query.value = ""
-                                isActive.value = false
-                                onActiveCallback(false)
-                            },
-                        imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
-                        contentDescription = "",
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+                    IconButton(
+                        onClick = {
+                            query.value = ""
+                            isActive.value = false
+                            onActiveCallback(false)
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            contentDescription = "Back",
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 } else {
-                    Icon(
-                        imageVector = Icons.Outlined.Search,
-                        contentDescription = stringResource(R.string.search_cd),
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
+                    IconButton(
+                        onClick = {
+                            isActive.value = true
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Search,
+                            contentDescription = stringResource(R.string.search_cd),
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
             },
             trailingIcon = {
                 if (query.value.trim().isNotEmpty()) {
-                    Icon(
-                        imageVector = Icons.Outlined.Clear,
-                        contentDescription = stringResource(R.string.clear_cd),
-                        tint = MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier
-                            .clickable {
-                                query.value = ""
-                            }
-                    )
+                    IconButton(
+                        onClick = {
+                            query.value = ""
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.Clear,
+                            contentDescription = stringResource(R.string.clear_cd),
+                            tint = MaterialTheme.colorScheme.onSurface
+                        )
+                    }
                 }
             },
         ) {

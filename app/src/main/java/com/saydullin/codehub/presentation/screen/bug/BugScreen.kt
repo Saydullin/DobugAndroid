@@ -46,7 +46,7 @@ fun BugScreen(
     ) {
         LazyColumn(
             state = scrollState,
-            contentPadding = PaddingValues(bottom = 16.dp),
+            contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             if (bugArticles != null) {

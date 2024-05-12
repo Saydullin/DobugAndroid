@@ -19,7 +19,7 @@ fun ProfileScreen(
     CodeHubScreen(
         title = ctx.getString(R.string.profile_title),
         appBarModifier = Modifier
-            .padding(16.dp)
+            .padding(16.dp),
     ) {
 
     }

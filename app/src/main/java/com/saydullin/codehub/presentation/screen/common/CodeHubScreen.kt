@@ -15,6 +15,8 @@ fun CodeHubScreen(
     title: String? = null,
     appBarContent: @Composable () -> Unit = {},
     showOnlyAppBarContent: Boolean = false,
+    showBackButton: Boolean = false,
+    onBackButtonClick: () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
     val scrollState = rememberTopBarScrollBehavior()
@@ -28,7 +30,9 @@ fun CodeHubScreen(
                 title = title,
                 scrollState = scrollState,
                 content = appBarContent,
-                showOnlyContent = showOnlyAppBarContent
+                showOnlyContent = showOnlyAppBarContent,
+                showBackButton = showBackButton,
+                onBackButtonClick = onBackButtonClick,
             )
         }
     ) { paddingValues ->

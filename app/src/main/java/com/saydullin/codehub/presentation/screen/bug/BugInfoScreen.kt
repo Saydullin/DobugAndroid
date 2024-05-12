@@ -1,30 +1,42 @@
 package com.saydullin.codehub.presentation.screen.bug
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.domain.model.article.bug.BugArticle
+import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
 
 @Composable
 fun BugInfoScreen(
     navController: NavController = rememberNavController()
 ) {
-    val bugArticle: BugArticle? = null
 
-    Column(
-        modifier = Modifier
-            .verticalScroll(rememberScrollState())
+    CodeHubScreen(
+        title = "Bug Info",
+        appBarModifier = Modifier
+            .padding(8.dp),
+        showBackButton = true,
+        onBackButtonClick = {
+            navController.popBackStack()
+        }
     ) {
-        Text(
-            text = bugArticle?.title ?: "null title",
-            style = MaterialTheme.typography.titleLarge,
-        )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            items(100) {
+                Text(
+                    modifier = Modifier
+                        .padding(8.dp),
+                    text = "Hello Saydullin"
+                )
+            }
+        }
     }
 
 }

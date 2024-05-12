@@ -145,6 +145,11 @@ fun NavController() {
                     navController = navController
                 )
             }
+            composable(Screen.BugInfo.route) {
+                BugInfoScreen(
+                    navController = navController
+                )
+            }
         }
     }
 

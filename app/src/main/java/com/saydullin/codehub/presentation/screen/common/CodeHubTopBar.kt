@@ -3,8 +3,14 @@ package com.saydullin.codehub.presentation.screen.common
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,6 +26,8 @@ fun CodeHubTopBar(
     scrollState: TopBarBehavior,
     title: String? = null,
     showOnlyContent: Boolean = false,
+    showBackButton: Boolean = false,
+    onBackButtonClick: () -> Unit,
     content: @Composable () -> Unit
 ) {
 
@@ -43,10 +51,33 @@ fun CodeHubTopBar(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             if (!showOnlyContent && title != null) {
-                Text(
-                    text = title,
-                    style = MaterialTheme.typography.headlineSmall,
-                )
+                if (showBackButton) {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        IconButton(
+                            modifier = Modifier
+                                .padding(0.dp),
+                            onClick = { onBackButtonClick() }
+                        ) {
+                            Icon(
+                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Back",
+                                tint = MaterialTheme.colorScheme.onSurface
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(10.dp))
+                        Text(
+                            text = title,
+                            style = MaterialTheme.typography.headlineSmall,
+                        )
+                    }
+                } else {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.headlineSmall,
+                    )
+                }
             }
             content()
         }
