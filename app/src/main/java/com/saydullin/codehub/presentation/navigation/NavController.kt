@@ -82,7 +82,7 @@ fun NavController() {
                     ) {
                         Icon(
                             Icons.Filled.Add,
-                            "Localized description"
+                            contentDescription = "Localized description"
                         )
                     }
                 }
@@ -154,3 +154,5 @@ fun NavController() {
     }
 
 }
+
+
