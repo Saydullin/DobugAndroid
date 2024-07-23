@@ -1,7 +1,7 @@
 package com.saydullin.codehub.presentation.model.project
 
-import com.saydullin.codehub.domain.model.article.ArticleAuthor
-import com.saydullin.codehub.domain.model.article.ArticleTag
+import com.saydullin.domain.model.article.ArticleAuthor
+import com.saydullin.domain.model.article.ArticleTag
 
 data class Project(
     val id: Int,

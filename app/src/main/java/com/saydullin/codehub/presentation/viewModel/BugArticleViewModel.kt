@@ -3,10 +3,10 @@ package com.saydullin.codehub.presentation.viewModel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.saydullin.codehub.domain.model.article.bug.BugArticle
-import com.saydullin.codehub.domain.usecase.GetBugArticleDBUseCase
-import com.saydullin.codehub.domain.util.Resource
-import com.saydullin.codehub.domain.util.StatusType
+import com.saydullin.domain.model.article.bug.BugArticle
+import com.saydullin.domain.usecase.GetBugArticleDBUseCase
+import com.saydullin.domain.util.Resource
+import com.saydullin.domain.util.StatusType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

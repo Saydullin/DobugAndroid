@@ -15,8 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.R
-import com.saydullin.codehub.domain.model.article.ArticleAuthor
-import com.saydullin.codehub.domain.model.article.ArticleTag
+import com.saydullin.domain.model.article.ArticleAuthor
+import com.saydullin.domain.model.article.ArticleTag
 import com.saydullin.codehub.presentation.component.projects.ProjectCard
 import com.saydullin.codehub.presentation.model.author.Author
 import com.saydullin.codehub.presentation.model.project.Project
@@ -50,7 +50,7 @@ fun ProjectsScreen(
                 regDate = 1632873600,
                 updatedDate = 1645219200
             ),
-            tags = listOf(ArticleTag(1, "music"), ArticleTag(3, "platform"))
+            tags = listOf(ArticleTag(1, "Android Dev"), ArticleTag(3, "IOS Dev"))
         ),
         Project(
             id = 2,
@@ -73,7 +73,7 @@ fun ProjectsScreen(
                 regDate = 1627833600,
                 updatedDate = 1641028800
             ),
-            tags = listOf(ArticleTag(4, "fitness"), ArticleTag(6, "tracking"))
+            tags = listOf(ArticleTag(4, "Flutter Dev"), ArticleTag(6, ".Net Dev"), ArticleTag(5, "C++ Dev"))
         ),
         Project(
             id = 3,
@@ -96,7 +96,7 @@ fun ProjectsScreen(
                 regDate = 1635724800,
                 updatedDate = 1643587200
             ),
-            tags = listOf(ArticleTag(7, "cooking"), ArticleTag(9, "AI"))
+            tags = listOf(ArticleTag(7, "Java Dev"), ArticleTag(9, "Web Full Stack Dev"))
         ),
         Project(
             id = 4,

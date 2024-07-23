@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.saydullin.codehub.domain.model.article.news.NewsArticle
+import com.saydullin.domain.model.article.news.NewsArticle
 import com.saydullin.codehub.presentation.navigation.NavController
 import com.saydullin.codehub.presentation.theme.ui.CodeHubTheme
 import dagger.hilt.android.AndroidEntryPoint

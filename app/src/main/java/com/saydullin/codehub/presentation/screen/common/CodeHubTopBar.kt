@@ -31,7 +31,7 @@ fun CodeHubTopBar(
     content: @Composable () -> Unit
 ) {
 
-    val shadowOffset = 10.dp
+    val shadowOffset = 5.dp
     val shadowElevation = animateDpAsState(
         targetValue = if (scrollState.state.scrollOffset.dp > shadowOffset)
             shadowOffset

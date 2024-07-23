@@ -1,6 +1,6 @@
 package com.saydullin.codehub.presentation.model.author
 
-import com.saydullin.codehub.domain.model.article.ArticleTag
+import com.saydullin.domain.model.article.ArticleTag
 
 data class Author(
     val id: Int,

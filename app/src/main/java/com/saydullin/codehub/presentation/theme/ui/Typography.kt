@@ -59,9 +59,9 @@ val typography = Typography(
         letterSpacing = 0.25.sp
     ),
     bodyMedium = TextStyle(
-        fontFamily = FontFamily(Font(R.font.roboto)),
+        fontFamily = FontFamily(Font(R.font.roboto_medium)),
         fontWeight = FontWeight.Medium,
-        fontSize = 14.sp,
+        fontSize = 16.sp,
         lineHeight = 20.sp,
         letterSpacing = 0.25.sp
     ),
@@ -73,3 +73,5 @@ val typography = Typography(
         letterSpacing = 0.5.sp
     ),
 )
+
+

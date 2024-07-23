@@ -53,6 +53,10 @@ fun ProjectCard(
                 author = project.author
             )
             Spacer(modifier = Modifier.height(16.dp))
+            Text(
+                text = "Looking for:",
+                style = MaterialTheme.typography.bodySmall
+            )
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {

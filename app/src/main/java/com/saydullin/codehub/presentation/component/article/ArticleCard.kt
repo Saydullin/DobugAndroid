@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.saydullin.codehub.R
-import com.saydullin.codehub.domain.model.article.news.NewsArticle
+import com.saydullin.domain.model.article.news.NewsArticle
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable

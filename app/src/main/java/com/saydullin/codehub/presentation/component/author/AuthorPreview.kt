@@ -16,7 +16,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.saydullin.codehub.domain.model.article.ArticleAuthor
+import com.saydullin.domain.model.article.ArticleAuthor
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable

@@ -27,7 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.saydullin.codehub.domain.model.article.bug.BugArticle
+import com.saydullin.domain.model.article.bug.BugArticle
 import com.saydullin.codehub.presentation.component.author.AuthorPreview
 import com.saydullin.codehub.presentation.navigation.Screen
 
@@ -35,7 +35,7 @@ import com.saydullin.codehub.presentation.navigation.Screen
 @Composable
 fun BugCard(
     navController: NavController = rememberNavController(),
-    bugArticle: BugArticle
+    bugArticle: BugArticle,
 ) {
 
     Card(
@@ -63,22 +63,6 @@ fun BugCard(
             modifier = Modifier
                 .padding(16.dp)
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                BugStatus(
-                    bugStatus = bugArticle.bugStatusType
-                )
-                Spacer(modifier = Modifier.width(5.dp))
-                Text(
-                    text = "10 Aug 2023",
-                    style = MaterialTheme.typography.labelMedium
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = bugArticle.title,
                 maxLines = 5,
@@ -111,6 +95,25 @@ fun BugCard(
                         }
                     )
                 }
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "Not solved",
+                    color = MaterialTheme.colorScheme.outline,
+                    style = MaterialTheme.typography.labelMedium,
+                )
+                Spacer(modifier = Modifier.width(5.dp))
+                Text(
+                    text = "10 Aug 2023",
+                    color = MaterialTheme.colorScheme.outline,
+                    style = MaterialTheme.typography.labelMedium,
+                )
             }
         }
     }

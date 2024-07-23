@@ -14,7 +14,7 @@ fun ScreenTitle(
     Text(
         modifier = modifier,
         text = text,
-        style = MaterialTheme.typography.headlineSmall
+        style = MaterialTheme.typography.displayLarge
     )
 
 }
