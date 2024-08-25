@@ -1,4 +1,4 @@
-package com.saydullin.domain.util
+package com.saydullin.domain.util.response
 
 enum class StatusType {
     SUCCESS,

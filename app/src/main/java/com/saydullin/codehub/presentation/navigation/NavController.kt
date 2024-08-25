@@ -1,5 +1,6 @@
 package com.saydullin.codehub.presentation.navigation
 
+import android.util.Log
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -16,11 +17,13 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -35,6 +38,7 @@ import com.saydullin.codehub.presentation.screen.notification.NotificationScreen
 import com.saydullin.codehub.presentation.screen.profile.ProfileScreen
 import com.saydullin.codehub.presentation.screen.projects.ProjectsScreen
 import com.saydullin.codehub.presentation.screen.search.SearchScreen
+import com.saydullin.codehub.presentation.viewModel.PostViewModel
 
 @Composable
 fun NavController() {
@@ -43,7 +47,13 @@ fun NavController() {
         mutableStateOf(Screen.Bugs.route)
     }
     val navController = rememberNavController()
+    val postViewModel: PostViewModel = hiltViewModel()
     val screens = Screen.getBottomBarScreens()
+
+    LaunchedEffect(Unit) {
+        Log.e("sady", "Getting All Posts")
+        postViewModel.getAllPosts()
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -119,7 +129,8 @@ fun NavController() {
             }
             composable(Screen.Bugs.route) {
                 BugScreen(
-                    navController = navController
+                    navController = navController,
+                    postViewModel = postViewModel,
                 )
             }
             composable(Screen.NewBug.route) {

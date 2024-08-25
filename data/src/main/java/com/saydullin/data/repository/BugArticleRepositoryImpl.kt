@@ -6,7 +6,7 @@ import com.saydullin.domain.model.article.bug.BugAnswersArticle
 import com.saydullin.domain.model.article.bug.BugArticle
 import com.saydullin.domain.model.article.bug.BugStatusType
 import com.saydullin.domain.repository.BugArticleRepository
-import com.saydullin.domain.util.Resource
+import com.saydullin.domain.util.response.Resource
 import javax.inject.Inject
 import kotlin.random.Random
 

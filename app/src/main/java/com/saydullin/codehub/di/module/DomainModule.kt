@@ -1,4 +1,4 @@
-package com.saydullin.codehub.di
+package com.saydullin.codehub.di.module
 
 import com.saydullin.domain.usecase.GetProfileUseCase
 import dagger.Module

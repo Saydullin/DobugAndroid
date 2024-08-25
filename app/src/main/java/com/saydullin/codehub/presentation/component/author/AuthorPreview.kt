@@ -16,12 +16,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.saydullin.domain.model.article.ArticleAuthor
+import com.saydullin.domain.model.post.Author
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun AuthorPreview(
-    author: ArticleAuthor
+    author: Author
 ) {
 
     Row(
@@ -38,7 +38,7 @@ fun AuthorPreview(
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = author.userName,
+            text = author.firstName,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
             style = MaterialTheme.typography.bodySmall,

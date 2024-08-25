@@ -49,9 +49,9 @@ fun ProjectCard(
                 style = MaterialTheme.typography.bodySmall
             )
             Spacer(modifier = Modifier.height(16.dp))
-            AuthorPreview(
-                author = project.author
-            )
+//            AuthorPreview(
+//                author = project.author
+//            )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "Looking for:",

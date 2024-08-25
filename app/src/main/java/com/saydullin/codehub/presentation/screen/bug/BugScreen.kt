@@ -2,7 +2,6 @@ package com.saydullin.codehub.presentation.screen.bug
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -10,29 +9,25 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.presentation.component.bug.BugCard
-import com.saydullin.codehub.presentation.component.bug.ShortBugCard
 import com.saydullin.codehub.presentation.component.search.ArticleSearch
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
-import com.saydullin.codehub.presentation.viewModel.BugArticleViewModel
+import com.saydullin.codehub.presentation.viewModel.PostViewModel
 
 @Composable
 fun BugScreen(
     navController: NavController = rememberNavController(),
-    restaurantViewModel: BugArticleViewModel = hiltViewModel(),
+    postViewModel: PostViewModel = hiltViewModel(),
 ) {
 
-    LaunchedEffect(Unit) {
-        restaurantViewModel.loadBugArticles()
-    }
     val scrollState = rememberLazyListState()
-    val bugArticles = restaurantViewModel.bugArticles.value
+    val postsMainResponse = postViewModel.posts.value
+    val postsPaging = postsMainResponse?.data
 
     CodeHubScreen(
         title = null,
@@ -50,11 +45,11 @@ fun BugScreen(
             contentPadding = PaddingValues(vertical = 16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            if (bugArticles != null) {
-                items(bugArticles) { bugArticle ->
+            if (postsPaging?.items != null) {
+                items(postsPaging.items) { post ->
                     BugCard(
                         navController = navController,
-                        bugArticle = bugArticle
+                        post = post
                     )
                 }
             } else {

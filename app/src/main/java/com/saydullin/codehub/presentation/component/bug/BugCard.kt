@@ -27,15 +27,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.saydullin.domain.model.article.bug.BugArticle
 import com.saydullin.codehub.presentation.component.author.AuthorPreview
 import com.saydullin.codehub.presentation.navigation.Screen
+import com.saydullin.domain.model.post.Post
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun BugCard(
     navController: NavController = rememberNavController(),
-    bugArticle: BugArticle,
+    post: Post,
 ) {
 
     Card(
@@ -55,7 +55,7 @@ fun BugCard(
                     .fillMaxWidth()
                     .height(200.dp),
                 contentScale = ContentScale.Crop,
-                model = bugArticle.previewImage,
+                model = post.previewImage,
                 contentDescription = "bug preview image"
             )
         }
@@ -64,18 +64,18 @@ fun BugCard(
                 .padding(16.dp)
         ) {
             Text(
-                text = bugArticle.title,
+                text = post.title,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.titleLarge,
             )
             Spacer(modifier = Modifier.height(16.dp))
             AuthorPreview(
-                author = bugArticle.author
+                author = post.author
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = bugArticle.description,
+                text = post.description,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
                 style = MaterialTheme.typography.bodySmall,
@@ -84,12 +84,12 @@ fun BugCard(
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(5.dp)
             ) {
-                for (tag in bugArticle.tags) {
+                post.tags?.forEach { tag->
                     SuggestionChip(
                         onClick = {  },
                         label = {
                             Text(
-                                text = tag.title,
+                                text = tag,
                                 style = MaterialTheme.typography.bodySmall
                             )
                         }

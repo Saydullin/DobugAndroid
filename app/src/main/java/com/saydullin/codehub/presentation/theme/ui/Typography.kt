@@ -24,8 +24,15 @@ val typography = Typography(
         letterSpacing = 0.sp
     ),
     displayMedium = TextStyle(
-        fontFamily = FontFamily(Font(R.font.roboto_medium)),
-        fontWeight = FontWeight.SemiBold,
+        fontFamily = FontFamily(Font(R.font.roboto)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 20.sp,
+        lineHeight = 28.sp,
+        letterSpacing = 0.sp
+    ),
+    displaySmall = TextStyle(
+        fontFamily = FontFamily(Font(R.font.roboto)),
+        fontWeight = FontWeight.Normal,
         fontSize = 18.sp,
         lineHeight = 24.sp,
         letterSpacing = 0.sp
@@ -38,6 +45,13 @@ val typography = Typography(
         letterSpacing = 0.sp
     ),
     titleMedium = TextStyle(
+        fontFamily = FontFamily(Font(R.font.roboto)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp
+    ),
+    titleSmall = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto)),
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp,

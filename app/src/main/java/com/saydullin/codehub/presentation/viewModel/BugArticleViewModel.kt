@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saydullin.domain.model.article.bug.BugArticle
 import com.saydullin.domain.usecase.GetBugArticleDBUseCase
-import com.saydullin.domain.util.Resource
-import com.saydullin.domain.util.StatusType
+import com.saydullin.domain.util.response.Resource
+import com.saydullin.domain.util.response.StatusType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -28,7 +28,7 @@ class BugArticleViewModel @Inject constructor(
             if (loadedArticles is Resource.Success && loadedArticles.data != null) {
                 _bugArticles.value = loadedArticles.data
             } else {
-                _error.value = loadedArticles.statusType
+                _error.value = loadedArticles.status
             }
         }
     }

@@ -33,6 +33,7 @@ android {
 
 dependencies {
     def room_version = "2.6.1"
+    def paging_version = "3.3.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     ksp "androidx.room:room-compiler:$room_version"
@@ -44,6 +45,10 @@ dependencies {
     implementation "androidx.hilt:hilt-navigation-compose:1.2.0"
 
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    testImplementation "androidx.paging:paging-common:$paging_version"
+    implementation "androidx.paging:paging-compose:3.3.1"
 
     implementation 'androidx.core:core-ktx:1.13.1'
     implementation 'androidx.appcompat:appcompat:1.7.0'

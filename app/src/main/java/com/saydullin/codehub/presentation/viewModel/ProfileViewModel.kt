@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saydullin.domain.model.profile.Profile
 import com.saydullin.domain.usecase.GetProfileUseCase
-import com.saydullin.domain.util.Resource
+import com.saydullin.domain.util.response.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
