@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.bug
+package com.saydullin.codehub.presentation.component.post
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SearchBar

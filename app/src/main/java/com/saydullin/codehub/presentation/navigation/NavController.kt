@@ -4,8 +4,6 @@ import android.util.Log
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.BottomAppBar
@@ -29,8 +27,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.presentation.screen.blog.BlogScreen
-import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
-import com.saydullin.codehub.presentation.screen.bug.BugScreen
+import com.saydullin.codehub.presentation.screen.post.BugInfoScreen
+import com.saydullin.codehub.presentation.screen.post.BugScreen
 import com.saydullin.codehub.presentation.screen.favoruite.FavouriteScreen
 import com.saydullin.codehub.presentation.screen.newBug.NewBugScreen
 import com.saydullin.codehub.presentation.screen.news.NewsScreen

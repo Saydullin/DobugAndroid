@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.screen.bug
+package com.saydullin.codehub.presentation.screen.post
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding

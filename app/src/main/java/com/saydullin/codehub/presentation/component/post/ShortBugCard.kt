@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.bug
+package com.saydullin.codehub.presentation.component.post
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -28,7 +28,6 @@ import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.saydullin.domain.model.article.bug.BugArticle
-import com.saydullin.codehub.presentation.component.author.AuthorPreview
 import com.saydullin.codehub.presentation.navigation.Screen
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalGlideComposeApi::class)

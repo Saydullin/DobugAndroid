@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.screen.bug
+package com.saydullin.codehub.presentation.screen.post
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.presentation.component.bug.BugCard
+import com.saydullin.codehub.presentation.component.post.PostCard
 import com.saydullin.codehub.presentation.component.search.ArticleSearch
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
@@ -47,7 +47,7 @@ fun BugScreen(
         ) {
             if (postsPaging?.items != null) {
                 items(postsPaging.items) { post ->
-                    BugCard(
+                    PostCard(
                         navController = navController,
                         post = post
                     )

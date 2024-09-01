@@ -2,7 +2,6 @@ package com.saydullin.codehub.presentation.screen.profile
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,7 +33,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
-import com.saydullin.codehub.presentation.component.bug.ShortBugCard
+import com.saydullin.codehub.presentation.component.post.ShortBugCard
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
 import com.saydullin.codehub.presentation.viewModel.BugArticleViewModel
 import com.saydullin.codehub.presentation.viewModel.ProfileViewModel

@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.bug
+package com.saydullin.codehub.presentation.component.post
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -33,7 +33,7 @@ import com.saydullin.domain.model.post.Post
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalGlideComposeApi::class)
 @Composable
-fun BugCard(
+fun PostCard(
     navController: NavController = rememberNavController(),
     post: Post,
 ) {

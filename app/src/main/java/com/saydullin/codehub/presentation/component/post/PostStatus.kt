@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.bug
+package com.saydullin.codehub.presentation.component.post
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
