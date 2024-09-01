@@ -94,9 +94,11 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
     implementation 'androidx.activity:activity-compose:1.9.1'
 
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation "com.github.bumptech.glide:compose:1.0.0-beta01"
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
 
     implementation 'androidx.core:core-ktx:1.13.1'
     implementation platform('org.jetbrains.kotlin:kotlin-bom:1.9.20')

@@ -1,6 +1,9 @@
 package com.saydullin.codehub.presentation.viewModel
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saydullin.codehub.di.mapper.PostUItoPostMapper
@@ -24,11 +27,13 @@ class PostViewModel @Inject constructor(
 ): ViewModel() {
 
     private val _posts = mutableStateOf<MainResponse<Paging<Post>>?>(null)
-    val posts = _posts
+    val posts: State<MainResponse<Paging<Post>>?> = _posts
     private val _status = mutableStateOf<String?>(null)
-    val status = _status
+    val status: State<String?> = _status
+    private val _currentPost = mutableStateOf<Post?>(null)
+    val currentPost: State<Post?> = _currentPost
     private val _error = mutableStateOf<String?>(null)
-    val error = _error
+    val error: State<String?> = _error
 
     fun getAllPosts() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -55,6 +60,12 @@ class PostViewModel @Inject constructor(
             } else {
                 _status.value = "Ok"
             }
+        }
+    }
+
+    fun currentPost(postId: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+
         }
     }
 

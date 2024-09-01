@@ -78,10 +78,10 @@ sealed class Screen(
         activeIcon = 0,
         isActive = false,
     )
-    data object BugInfo : Screen(
-        route = "bugInfo",
-        title = "Bug Info",
-        icon = R.drawable.ic_bug,
+    data object PostInfo : Screen(
+        route = "postInfo",
+        title = "Post Info",
+        icon = R.drawable.ic_article,
         activeIcon = 0,
         isActive = false,
     )

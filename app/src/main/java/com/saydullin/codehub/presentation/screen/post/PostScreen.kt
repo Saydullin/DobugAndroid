@@ -49,10 +49,12 @@ fun BugScreen(
                 items(postsPaging.items) { post ->
                     PostCard(
                         navController = navController,
+                        postViewModel = postViewModel,
                         post = post
                     )
                 }
             } else {
+                // Show placeholders until get empty list
                 item {
                     Text(
                         text = "No Bug Articles",

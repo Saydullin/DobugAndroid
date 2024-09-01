@@ -110,7 +110,7 @@ fun NavController() {
                     navController = navController
                 )
             }
-            composable(Screen.BugInfo.route) {
+            composable(Screen.PostInfo.route) {
                 BugInfoScreen(
                     navController = navController
                 )
@@ -156,7 +156,7 @@ fun NavController() {
                     navController = navController
                 )
             }
-            composable(Screen.BugInfo.route) {
+            composable(Screen.PostInfo.route) {
                 BugInfoScreen(
                     navController = navController
                 )

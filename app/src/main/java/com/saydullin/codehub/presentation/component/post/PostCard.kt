@@ -23,18 +23,21 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.saydullin.codehub.presentation.component.author.AuthorPreview
 import com.saydullin.codehub.presentation.navigation.Screen
+import com.saydullin.codehub.presentation.viewModel.PostViewModel
 import com.saydullin.domain.model.post.Post
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalGlideComposeApi::class)
 @Composable
 fun PostCard(
     navController: NavController = rememberNavController(),
+    postViewModel: PostViewModel = hiltViewModel(),
     post: Post,
 ) {
 
@@ -43,7 +46,8 @@ fun PostCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .clickable {
-                navController.navigate(Screen.BugInfo.route)
+                postViewModel.currentPost(post.id)
+                navController.navigate(Screen.PostInfo.route)
             }
     ) {
         Box(
