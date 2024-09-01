@@ -5,11 +5,14 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.saydullin.data.database.converter.IntListConverter
 import com.saydullin.data.database.dao.ArticleDao
+import com.saydullin.data.database.dao.PostDao
 import com.saydullin.data.database.entities.ArticleEntity
+import com.saydullin.data.database.entities.PostEntity
 
 @Database(
     entities = [
-        ArticleEntity::class
+        ArticleEntity::class,
+        PostEntity::class
     ],
     version = 1,
     exportSchema = true,
@@ -20,6 +23,8 @@ import com.saydullin.data.database.entities.ArticleEntity
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun articleDao(): ArticleDao
+
+    abstract fun postDao(): PostDao
 
 }
 

@@ -1,18 +1,24 @@
-package com.saydullin.data.di
+package com.saydullin.data.di.module
 
 import android.content.Context
 import androidx.room.Room
 import com.saydullin.data.database.AppDatabase
+import com.saydullin.data.database.converter.IntListConverter
 import com.saydullin.data.database.dao.ArticleDao
+import com.saydullin.data.database.dao.PostDao
+import com.saydullin.data.di.mapper.PostEntityToPostMapper
+import com.saydullin.data.di.mapper.PostToPostEntityMapper
 import com.saydullin.data.repository.ArticleRepositoryImpl
 import com.saydullin.data.repository.BugArticleRepositoryImpl
-import com.saydullin.data.repository.PostRepositoryImpl
+import com.saydullin.data.repository.post.PostLocalRepositoryImpl
+import com.saydullin.data.repository.post.PostServerRepositoryImpl
 import com.saydullin.data.server.RetrofitBuilder
 import com.saydullin.data.server.service.PostService
 import com.saydullin.domain.di.qualifiers.BaseUrl
 import com.saydullin.domain.repository.ArticleRepository
 import com.saydullin.domain.repository.BugArticleRepository
-import com.saydullin.domain.repository.PostRepository
+import com.saydullin.domain.repository.post.PostLocalRepository
+import com.saydullin.domain.repository.post.PostServerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,6 +41,7 @@ class DataModule {
             AppDatabase::class.java,
             "CodeHubDatabase"
         )
+            .addTypeConverter(IntListConverter())
             .allowMainThreadQueries()
             .build()
     }
@@ -61,11 +68,31 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun providePostDao(appDatabase: AppDatabase): PostDao {
+        return appDatabase.postDao()
+    }
+
+    @Provides
+    @Singleton
     fun provideArticleRepository(
         articleDao: ArticleDao
     ): ArticleRepository {
         return ArticleRepositoryImpl(
             articleDao = articleDao,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun postLocalRepository(
+       postDao: PostDao,
+       postEntityToPostMapper: PostEntityToPostMapper,
+       postToPostEntityMapper: PostToPostEntityMapper
+    ): PostLocalRepository {
+        return PostLocalRepositoryImpl(
+            postDao = postDao,
+            postEntityToPostMapper = postEntityToPostMapper,
+            postToPostEntityMapper = postToPostEntityMapper,
         )
     }
 
@@ -80,8 +107,8 @@ class DataModule {
     @Singleton
     fun providePostRepository(
         postService: PostService
-    ): PostRepository {
-        return PostRepositoryImpl(postService)
+    ): PostServerRepository {
+        return PostServerRepositoryImpl(postService)
     }
 
 }

@@ -28,6 +28,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.saydullin.codehub.presentation.component.author.AuthorPreview
+import com.saydullin.codehub.presentation.component.author.UnknownAuthorPreview
 import com.saydullin.codehub.presentation.navigation.Screen
 import com.saydullin.domain.model.post.Post
 
@@ -37,6 +38,8 @@ fun BugCard(
     navController: NavController = rememberNavController(),
     post: Post,
 ) {
+
+    val author = post.author
 
     Card(
         modifier = Modifier
@@ -70,9 +73,11 @@ fun BugCard(
                 style = MaterialTheme.typography.titleLarge,
             )
             Spacer(modifier = Modifier.height(16.dp))
-            AuthorPreview(
-                author = post.author
-            )
+            if (author != null) {
+                AuthorPreview(author)
+            } else {
+                UnknownAuthorPreview()
+            }
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = post.description,

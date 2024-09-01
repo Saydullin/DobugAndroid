@@ -1,17 +1,17 @@
-package com.saydullin.data.repository
+package com.saydullin.data.repository.post
 
 import com.saydullin.data.server.service.PostService
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.model.response.MainResponse
 import com.saydullin.domain.model.response.Paging
-import com.saydullin.domain.repository.PostRepository
+import com.saydullin.domain.repository.post.PostServerRepository
 import com.saydullin.domain.util.response.Resource
 import com.saydullin.domain.util.response.StatusType
 import javax.inject.Inject
 
-class PostRepositoryImpl @Inject constructor(
+class PostServerRepositoryImpl @Inject constructor(
     private val postService: PostService
-): PostRepository {
+): PostServerRepository {
 
     override suspend fun getAll(): Resource<MainResponse<Paging<Post>>> {
         return try {

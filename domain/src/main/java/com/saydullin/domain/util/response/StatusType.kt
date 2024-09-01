@@ -7,6 +7,7 @@ enum class StatusType {
     CONNECTION_ERROR,
     DATABASE_ERROR,
     DATA_ERROR,
+    DATA_NOT_FOUND,
 }
 
 

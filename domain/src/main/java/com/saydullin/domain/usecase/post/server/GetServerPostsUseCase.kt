@@ -1,18 +1,18 @@
-package com.saydullin.domain.usecase.post
+package com.saydullin.domain.usecase.post.server
 
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.model.response.MainResponse
 import com.saydullin.domain.model.response.Paging
-import com.saydullin.domain.repository.PostRepository
+import com.saydullin.domain.repository.post.PostServerRepository
 import com.saydullin.domain.util.response.Resource
 import javax.inject.Inject
 
-class GetPostsUseCase @Inject constructor(
-    private val postRepository: PostRepository
+class GetServerPostsUseCase @Inject constructor(
+    private val postServerRepository: PostServerRepository
 ) {
 
     suspend fun execute(): Resource<MainResponse<Paging<Post>>> {
-        return postRepository.getAll()
+        return postServerRepository.getAll()
     }
 
 }

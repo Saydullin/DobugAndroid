@@ -8,8 +8,9 @@ import com.saydullin.codehub.presentation.model.post.PostUI
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.model.response.MainResponse
 import com.saydullin.domain.model.response.Paging
-import com.saydullin.domain.usecase.post.GetPostsUseCase
-import com.saydullin.domain.usecase.post.SavePostUseCase
+import com.saydullin.domain.usecase.post.local.SaveLocalPostInfoUseCase
+import com.saydullin.domain.usecase.post.server.GetServerPostsUseCase
+import com.saydullin.domain.usecase.post.server.SaveServerPostUseCase
 import com.saydullin.domain.util.response.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
-    private val getPostsUseCase: GetPostsUseCase,
-    private val savePostUseCase: SavePostUseCase,
+    private val getServerPostsUseCase: GetServerPostsUseCase,
+    private val saveServerPostUseCase: SaveServerPostUseCase,
+    private val saveLocalPostInfoUseCase: SaveLocalPostInfoUseCase,
     private val postUItoPostMapper: PostUItoPostMapper,
 ): ViewModel() {
 
@@ -32,7 +34,7 @@ class PostViewModel @Inject constructor(
 
     fun getAllPosts() {
         viewModelScope.launch(Dispatchers.IO) {
-            val postsResource = getPostsUseCase.execute()
+            val postsResource = getServerPostsUseCase.execute()
 
             when(postsResource) {
                 is Resource.Success -> {
@@ -48,7 +50,7 @@ class PostViewModel @Inject constructor(
     fun savePost(postUI: PostUI) {
         viewModelScope.launch(Dispatchers.IO) {
             val post = postUItoPostMapper.map(postUI)
-            val postsResource = savePostUseCase.execute(post)
+            val postsResource = saveServerPostUseCase.execute(post)
 
             if (postsResource.isErrorData()) {
                 _error.value = postsResource.status.toString()
