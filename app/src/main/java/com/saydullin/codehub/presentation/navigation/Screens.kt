@@ -20,6 +20,12 @@ sealed class Screen(
                 Profile,
             )
         }
+
+        fun getExcludedBottomBarScreens(): List<Screen> {
+            return listOf(
+                NewBug
+            )
+        }
     }
 
     data object News : Screen(

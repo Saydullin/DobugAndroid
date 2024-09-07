@@ -1,4 +1,4 @@
-package com.saydullin.data.di.mapper
+package com.saydullin.data.di.mapper.post
 
 import com.saydullin.data.database.entities.PostEntity
 import com.saydullin.domain.di.mapper.Mapper

@@ -6,8 +6,8 @@ import com.saydullin.data.database.AppDatabase
 import com.saydullin.data.database.converter.IntListConverter
 import com.saydullin.data.database.dao.ArticleDao
 import com.saydullin.data.database.dao.PostDao
-import com.saydullin.data.di.mapper.PostEntityToPostMapper
-import com.saydullin.data.di.mapper.PostToPostEntityMapper
+import com.saydullin.data.di.mapper.post.PostEntityToPostMapper
+import com.saydullin.data.di.mapper.post.PostToPostEntityMapper
 import com.saydullin.data.repository.ArticleRepositoryImpl
 import com.saydullin.data.repository.BugArticleRepositoryImpl
 import com.saydullin.data.repository.post.PostLocalRepositoryImpl
@@ -85,9 +85,9 @@ class DataModule {
     @Provides
     @Singleton
     fun postLocalRepository(
-       postDao: PostDao,
-       postEntityToPostMapper: PostEntityToPostMapper,
-       postToPostEntityMapper: PostToPostEntityMapper
+        postDao: PostDao,
+        postEntityToPostMapper: PostEntityToPostMapper,
+        postToPostEntityMapper: PostToPostEntityMapper
     ): PostLocalRepository {
         return PostLocalRepositoryImpl(
             postDao = postDao,

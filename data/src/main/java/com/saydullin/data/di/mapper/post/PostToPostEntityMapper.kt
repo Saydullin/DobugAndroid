@@ -1,4 +1,4 @@
-package com.saydullin.data.di.mapper
+package com.saydullin.data.di.mapper.post
 
 import com.saydullin.data.database.entities.PostEntity
 import com.saydullin.domain.di.mapper.Mapper
@@ -14,7 +14,7 @@ class PostToPostEntityMapper @Inject constructor(
             previewImage = from.previewImage ?: "",
             title = from.title,
             description = from.description,
-            author = -1,
+            authorId = -1,
             content = from.content,
             tags = -1,
             views = from.views,

@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor
+package com.saydullin.codehub.presentation.component.editor.input.attachment
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -23,15 +25,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun InputEditor(
+fun InputAttachmentEditor(
     modifier: Modifier = Modifier,
     isBigContent: Boolean = false,
-    textStyle: TextStyle = MaterialTheme.typography.titleLarge,
+    textStyle: TextStyle = MaterialTheme.typography.displaySmall,
     onInputEdit: (String) -> Unit,
+    icons: List<ImageVector> = listOf(),
     placeholder: String,
     label: String? = null,
     contentLimit: Int = 0,
@@ -40,7 +44,7 @@ fun InputEditor(
     val input = remember { mutableStateOf("") }
 
     Column(
-        modifier = modifier,
+        modifier = modifier
     ) {
         Row(
             modifier = Modifier
@@ -68,43 +72,61 @@ fun InputEditor(
             }
         }
         Spacer(modifier = Modifier.height(8.dp))
-        TextField(
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = if (isBigContent) 200.dp else 0.dp)
                 .border(
                     width = 2.dp,
                     color = MaterialTheme.colorScheme.outlineVariant,
                     shape = RoundedCornerShape(16.dp)
                 ),
-            value = input.value,
-            onValueChange = {
-                if (contentLimit == 0 || it.length <= contentLimit) {
-                    onInputEdit(it)
-                    input.value = it
+        ) {
+            TextField(
+                modifier = Modifier
+                    .weight(1f)
+                    .heightIn(min = if (isBigContent) 200.dp else 0.dp),
+                value = input.value,
+                onValueChange = {
+                    if (contentLimit == 0 || it.length <= contentLimit) {
+                        onInputEdit(it)
+                        input.value = it
+                    }
+                },
+                placeholder = {
+                    Text(
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.outline,
+                        text = placeholder,
+                    )
+                },
+                shape = RoundedCornerShape(16.dp),
+                textStyle = textStyle,
+                label = null,
+                colors = TextFieldDefaults.colors(
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                    disabledIndicatorColor = Color.Transparent,
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                ),
+            )
+            if (icons.isNotEmpty()) {
+                Column {
+                    icons.forEach {
+                        IconButton(
+                            onClick = { /*TODO*/ }
+                        ) {
+                            Icon(
+                                imageVector = it,
+                                contentDescription = "",
+                                tint = MaterialTheme.colorScheme.outline,
+                            )
+                        }
+                    }
                 }
-            },
-            placeholder = {
-                Text(
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.outline,
-                    text = placeholder,
-                )
-            },
-            shape = RoundedCornerShape(16.dp),
-            textStyle = textStyle,
-            label = null,
-            colors = TextFieldDefaults.colors(
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent,
-                focusedContainerColor = Color.Transparent,
-                unfocusedContainerColor = Color.Transparent,
-            ),
-        )
+            }
+        }
     }
-
-
 }
 
 

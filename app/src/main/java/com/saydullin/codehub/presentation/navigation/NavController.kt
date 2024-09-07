@@ -1,33 +1,25 @@
 package com.saydullin.codehub.presentation.navigation
 
-import android.util.Log
-import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.BottomAppBarDefaults
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.FloatingActionButtonDefaults
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.saydullin.codehub.presentation.component.navigation.bar.BottomBar
 import com.saydullin.codehub.presentation.screen.blog.BlogScreen
 import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
 import com.saydullin.codehub.presentation.screen.bug.BugScreen
@@ -41,64 +33,41 @@ import com.saydullin.codehub.presentation.screen.search.SearchScreen
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
 
 @Composable
-fun NavController() {
+fun NavController(
+    navController: NavHostController = rememberNavController(),
+    postViewModel: PostViewModel = hiltViewModel()
+) {
 
-    val selectedRoute = remember {
-        mutableStateOf(Screen.Bugs.route)
-    }
-    val navController = rememberNavController()
-    val postViewModel: PostViewModel = hiltViewModel()
-    val screens = Screen.getBottomBarScreens()
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+    val excludedBottomBarScreens = Screen.getExcludedBottomBarScreens()
+    val isExcludedForBottomBar = excludedBottomBarScreens.all { it.route != currentRoute }
 
     LaunchedEffect(Unit) {
-        Log.e("sady", "Getting All Posts")
         postViewModel.getAllPosts()
+        postViewModel.getLocalPost()
     }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-            BottomAppBar(
-                windowInsets = WindowInsets(left = 8.dp),
-                actions = {
-                    screens.forEach { item ->
-                        val isSelected = selectedRoute.value == item.route
-                        IconButton(onClick = {
-                            navController.navigate(item.route) {
-                                popUpTo(navController.graph.findStartDestination().id)
-                            }
-                            selectedRoute.value = item.route
-                        }) {
-                            Icon(
-                                painter = painterResource(id = item.icon),
-                                contentDescription = item.title,
-                                tint = if (isSelected) {
-                                    MaterialTheme.colorScheme.primary
-                                } else {
-                                    MaterialTheme.colorScheme.onSurface
-                                }
-                            )
-                        }
-                    }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(
-                        onClick = {
-                            navController.navigate(Screen.NewBug.route) {
-                                popUpTo(navController.graph.findStartDestination().id)
-                            }
-                            selectedRoute.value = Screen.NewBug.route
-                        },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
-                    ) {
-                        Icon(
-                            Icons.Filled.Add,
-                            contentDescription = "Localized description"
-                        )
-                    }
-                }
+
+//        if (isExcludedForBottomBar) {
+//            BottomBar(
+//                navController = navController,
+//            )
+//        }
+
+        AnimatedVisibility(
+            visible = isExcludedForBottomBar,
+            enter = expandVertically(),
+            exit = fadeOut(
+                animationSpec = tween(0)
             )
+        ) {
+            BottomBar(
+                navController = navController,
+            )
+        }
         },
     ) { innerPadding ->
         NavHost(
@@ -133,7 +102,19 @@ fun NavController() {
                     postViewModel = postViewModel,
                 )
             }
-            composable(Screen.NewBug.route) {
+            composable(
+                route = Screen.NewBug.route,
+                enterTransition = {
+                    fadeIn(
+                        animationSpec = tween(0)
+                    )
+                },
+                exitTransition = {
+                    fadeOut(
+                        animationSpec = tween(0)
+                    )
+                }
+            ) {
                 NewBugScreen(
                     navController = navController
                 )
