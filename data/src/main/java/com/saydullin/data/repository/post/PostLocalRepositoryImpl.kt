@@ -1,8 +1,8 @@
 package com.saydullin.data.repository.post
 
 import com.saydullin.data.database.dao.PostDao
-import com.saydullin.data.di.mapper.PostEntityToPostMapper
-import com.saydullin.data.di.mapper.PostToPostEntityMapper
+import com.saydullin.data.di.mapper.post.PostEntityToPostMapper
+import com.saydullin.data.di.mapper.post.PostToPostEntityMapper
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.repository.post.PostLocalRepository
 import com.saydullin.domain.util.response.Resource

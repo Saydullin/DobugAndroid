@@ -53,6 +53,7 @@ fun NavController() {
     LaunchedEffect(Unit) {
         Log.e("sady", "Getting All Posts")
         postViewModel.getAllPosts()
+        postViewModel.getLocalPost()
     }
 
     Scaffold(

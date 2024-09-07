@@ -7,12 +7,14 @@ import com.saydullin.data.database.converter.IntListConverter
 import com.saydullin.data.database.dao.ArticleDao
 import com.saydullin.data.database.dao.PostDao
 import com.saydullin.data.database.entities.ArticleEntity
+import com.saydullin.data.database.entities.AuthorEntity
 import com.saydullin.data.database.entities.PostEntity
 
 @Database(
     entities = [
         ArticleEntity::class,
-        PostEntity::class
+        PostEntity::class,
+        AuthorEntity::class,
     ],
     version = 1,
     exportSchema = true,

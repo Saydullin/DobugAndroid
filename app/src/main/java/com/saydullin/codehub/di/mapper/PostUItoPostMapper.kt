@@ -20,7 +20,8 @@ class PostUItoPostMapper @Inject constructor(
                 id = -1,
                 firstName = "Saydullin",
                 middleName = "",
-                lastName = ""
+                lastName = "",
+                username = "",
             ),
             content = "",
             tags = listOf(),

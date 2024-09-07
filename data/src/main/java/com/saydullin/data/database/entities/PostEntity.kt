@@ -6,11 +6,12 @@ import com.saydullin.domain.model.post.Author
 
 @Entity
 data class PostEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val postId: Int = 0,
+    val id: Int,
     val previewImage: String,
     val title: String,
     val description: String,
-    val author: Int,
+    val authorId: Int,
     val content: String,
     val tags: Int,
     val views: Int,

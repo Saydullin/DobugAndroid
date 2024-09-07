@@ -8,6 +8,7 @@ import com.saydullin.codehub.presentation.model.post.PostUI
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.model.response.MainResponse
 import com.saydullin.domain.model.response.Paging
+import com.saydullin.domain.usecase.post.local.GetLocalPostInfoUseCase
 import com.saydullin.domain.usecase.post.local.SaveLocalPostInfoUseCase
 import com.saydullin.domain.usecase.post.server.GetServerPostsUseCase
 import com.saydullin.domain.usecase.post.server.SaveServerPostUseCase
@@ -19,6 +20,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PostViewModel @Inject constructor(
+    private val getLocalPostInfoUseCase: GetLocalPostInfoUseCase,
     private val getServerPostsUseCase: GetServerPostsUseCase,
     private val saveServerPostUseCase: SaveServerPostUseCase,
     private val saveLocalPostInfoUseCase: SaveLocalPostInfoUseCase,
@@ -57,6 +59,12 @@ class PostViewModel @Inject constructor(
             } else {
                 _status.value = "Ok"
             }
+        }
+    }
+
+    fun getLocalPost() {
+        viewModelScope.launch(Dispatchers.IO) {
+            getLocalPostInfoUseCase.execute(1)
         }
     }
 

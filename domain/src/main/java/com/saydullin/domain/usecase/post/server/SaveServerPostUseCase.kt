@@ -6,7 +6,7 @@ import com.saydullin.domain.util.response.Resource
 import javax.inject.Inject
 
 class SaveServerPostUseCase @Inject constructor(
-    private val postServerRepository: PostServerRepository
+    private val postServerRepository: PostServerRepository,
 ) {
 
     suspend fun execute(post: Post): Resource<Unit> {
@@ -14,3 +14,5 @@ class SaveServerPostUseCase @Inject constructor(
     }
 
 }
+
+
