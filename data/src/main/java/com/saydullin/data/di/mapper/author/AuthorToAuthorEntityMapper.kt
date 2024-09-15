@@ -14,7 +14,6 @@ class AuthorToAuthorEntityMapper @Inject constructor(
             firstName = from.firstName,
             middleName = from.middleName,
             lastName = from.lastName,
-            username = from.username,
         )
     }
 

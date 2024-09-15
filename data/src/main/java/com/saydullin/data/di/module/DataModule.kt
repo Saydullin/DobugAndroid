@@ -10,13 +10,16 @@ import com.saydullin.data.di.mapper.post.PostEntityToPostMapper
 import com.saydullin.data.di.mapper.post.PostToPostEntityMapper
 import com.saydullin.data.repository.ArticleRepositoryImpl
 import com.saydullin.data.repository.BugArticleRepositoryImpl
+import com.saydullin.data.repository.auth.AuthRepositoryImpl
 import com.saydullin.data.repository.post.PostLocalRepositoryImpl
 import com.saydullin.data.repository.post.PostServerRepositoryImpl
 import com.saydullin.data.server.RetrofitBuilder
+import com.saydullin.data.server.service.AuthService
 import com.saydullin.data.server.service.PostService
 import com.saydullin.domain.di.qualifiers.BaseUrl
 import com.saydullin.domain.repository.ArticleRepository
 import com.saydullin.domain.repository.BugArticleRepository
+import com.saydullin.domain.repository.auth.AuthRepository
 import com.saydullin.domain.repository.post.PostLocalRepository
 import com.saydullin.domain.repository.post.PostServerRepository
 import dagger.Module
@@ -58,6 +61,12 @@ class DataModule {
     @Singleton
     fun providePostService(retrofit: Retrofit): PostService {
         return retrofit.create(PostService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthService(retrofit: Retrofit): AuthService {
+        return retrofit.create(AuthService::class.java)
     }
 
     @Provides
@@ -109,6 +118,14 @@ class DataModule {
         postService: PostService
     ): PostServerRepository {
         return PostServerRepositoryImpl(postService)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(
+        authService: AuthService
+    ): AuthRepository {
+        return AuthRepositoryImpl(authService)
     }
 
 }

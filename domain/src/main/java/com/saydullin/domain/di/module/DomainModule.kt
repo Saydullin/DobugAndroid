@@ -20,12 +20,4 @@ class DomainModule {
         return AppConfig.BASE_URL
     }
 
-    @Provides
-    @Singleton
-    fun provideGetPostsUseCase(
-        postServerRepository: PostServerRepository
-    ): GetServerPostsUseCase {
-        return GetServerPostsUseCase(postServerRepository)
-    }
-
 }

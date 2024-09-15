@@ -37,7 +37,7 @@ fun BugScreen(
             )
         },
         appBarModifier = Modifier
-            .padding(bottom = 16.dp),
+            .padding(bottom = 8.dp),
         showOnlyAppBarContent = true,
     ) {
         LazyColumn(

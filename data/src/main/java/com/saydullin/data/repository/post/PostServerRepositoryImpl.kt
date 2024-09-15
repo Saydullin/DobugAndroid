@@ -1,5 +1,6 @@
 package com.saydullin.data.repository.post
 
+import android.util.Log
 import com.saydullin.data.server.service.PostService
 import com.saydullin.domain.model.post.Post
 import com.saydullin.domain.model.response.MainResponse
@@ -49,11 +50,14 @@ class PostServerRepositoryImpl @Inject constructor(
 
     override suspend fun savePost(post: Post): Resource<Unit> {
         return try {
+            Log.d("sady", "SAVE")
             val savePost = postService.savePost(post)
             val postResponse = savePost.execute()
             if (postResponse.isSuccessful) {
+                Log.d("sady", "SAVE SUCCESS ${postResponse.raw()}")
                 return Resource.Success(Unit)
             } else {
+                Log.d("sady", "SAVE ERROR ${postResponse.raw()}")
                 throw Exception("savePost($post) to server not successful: ${postResponse.raw()}")
             }
         } catch (e: Exception) {

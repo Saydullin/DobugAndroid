@@ -15,7 +15,6 @@ class PostToPostEntityMapper @Inject constructor(
             title = from.title,
             description = from.description,
             authorId = -1,
-            content = from.content,
             tags = -1,
             views = from.views,
             createdAt = from.createdAt,

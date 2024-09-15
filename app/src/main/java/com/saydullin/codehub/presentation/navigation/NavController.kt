@@ -20,6 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.presentation.component.navigation.bar.BottomBar
+import com.saydullin.codehub.presentation.screen.auth.SignInScreen
 import com.saydullin.codehub.presentation.screen.blog.BlogScreen
 import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
 import com.saydullin.codehub.presentation.screen.bug.BugScreen
@@ -50,24 +51,17 @@ fun NavController(
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-
-//        if (isExcludedForBottomBar) {
-//            BottomBar(
-//                navController = navController,
-//            )
-//        }
-
-        AnimatedVisibility(
-            visible = isExcludedForBottomBar,
-            enter = expandVertically(),
-            exit = fadeOut(
-                animationSpec = tween(0)
-            )
-        ) {
-            BottomBar(
-                navController = navController,
-            )
-        }
+            AnimatedVisibility(
+                visible = isExcludedForBottomBar,
+                enter = expandVertically(),
+                exit = fadeOut(
+                    animationSpec = tween(0)
+                )
+            ) {
+                BottomBar(
+                    navController = navController,
+                )
+            }
         },
     ) { innerPadding ->
         NavHost(
@@ -135,7 +129,10 @@ fun NavController(
                 )
             }
             composable(Screen.Profile.route) {
-                ProfileScreen(
+//                ProfileScreen(
+//                    navController = navController
+//                )
+                SignInScreen(
                     navController = navController
                 )
             }

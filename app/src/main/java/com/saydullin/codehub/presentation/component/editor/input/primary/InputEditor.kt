@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
@@ -50,21 +51,25 @@ fun InputEditor(
         ) {
             if (label != null) {
                 Text(
+                    modifier = Modifier
+                        .padding(start = 8.dp),
                     style = MaterialTheme.typography.titleMedium,
                     text = label
                 )
             }
             Spacer(modifier = Modifier.width(8.dp))
-            AnimatedVisibility(
-                visible = input.value.length > (contentLimit - 31),
-                enter = fadeIn(),
-                exit = fadeOut()
-            ) {
-                Text(
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    text = "${input.value.length}/$contentLimit"
-                )
+            if (contentLimit != 0) {
+                AnimatedVisibility(
+                    visible = input.value.length > (contentLimit - 31),
+                    enter = fadeIn(),
+                    exit = fadeOut()
+                ) {
+                    Text(
+                        style = MaterialTheme.typography.titleMedium,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                        text = "${input.value.length}/$contentLimit"
+                    )
+                }
             }
         }
         Spacer(modifier = Modifier.height(8.dp))

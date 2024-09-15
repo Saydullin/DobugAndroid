@@ -17,7 +17,7 @@ interface PostService {
     @GET("post/{id}")
     fun getById(@Path("id") id: Int): Call<MainResponse<Post?>>
 
-    @POST("/add/post")
+    @POST("/post")
     fun savePost(@Body post: Post): Call<Unit>
 
 }

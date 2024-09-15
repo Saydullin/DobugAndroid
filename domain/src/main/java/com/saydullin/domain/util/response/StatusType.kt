@@ -8,6 +8,7 @@ enum class StatusType {
     DATABASE_ERROR,
     DATA_ERROR,
     DATA_NOT_FOUND,
+    SIGN_IN_ERROR,
 }
 
 

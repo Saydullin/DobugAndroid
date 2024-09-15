@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
@@ -54,6 +55,8 @@ fun InputAttachmentEditor(
         ) {
             if (label != null) {
                 Text(
+                    modifier = Modifier
+                        .padding(start = 8.dp),
                     style = MaterialTheme.typography.titleMedium,
                     text = label
                 )

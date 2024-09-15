@@ -21,7 +21,7 @@ val typography = Typography(
         fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp,
         lineHeight = 28.sp,
-        letterSpacing = 0.sp
+        letterSpacing = 0.sp,
     ),
     displayMedium = TextStyle(
         fontFamily = FontFamily(Font(R.font.roboto)),

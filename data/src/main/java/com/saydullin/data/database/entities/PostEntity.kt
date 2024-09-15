@@ -12,7 +12,6 @@ data class PostEntity(
     val title: String,
     val description: String,
     val authorId: Int,
-    val content: String,
     val tags: Int,
     val views: Int,
     val createdAt: Long,

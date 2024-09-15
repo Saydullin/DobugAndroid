@@ -12,27 +12,25 @@ class PostUItoPostMapper @Inject constructor(
 
     override fun map(from: PostUI): Post {
         return Post(
-            id = -1,
+            id = 1,
             previewImage = null,
             title = from.title,
             description = from.description,
             author = Author(
-                id = -1,
+                id = 1,
                 firstName = "Saydullin",
                 middleName = "",
                 lastName = "",
-                username = "",
             ),
-            content = "",
             tags = listOf(),
             views = 0,
             createdAt = Date().time,
             updatedAt = Date().time,
-            likes = listOf(),
+            likes = null,
             comments = listOf(),
             attachments = listOf(),
             type = "",
-            status = ""
+            status = "published"
         )
     }
 

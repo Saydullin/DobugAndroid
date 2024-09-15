@@ -6,7 +6,6 @@ data class Post(
     val title: String,
     val description: String,
     val author: Author?,
-    val content: String,
     val tags: List<String>?,
     val views: Int,
     val createdAt: Long,
