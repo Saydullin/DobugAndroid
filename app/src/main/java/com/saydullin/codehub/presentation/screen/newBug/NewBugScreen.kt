@@ -1,5 +1,6 @@
 package com.saydullin.codehub.presentation.screen.newBug
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -41,6 +42,12 @@ fun NewBugScreen(
     val scrollState = rememberScrollState()
     val titlePost = remember { mutableStateOf("") }
     val descriptionPost = remember { mutableStateOf("") }
+
+    val error = postViewModel.error.value
+
+    if (error != null) {
+        Toast.makeText(ctx, "Error $error", Toast.LENGTH_SHORT).show()
+    }
 
     CodeHubScreen(
         title = ctx.getString(R.string.newBug_title),
