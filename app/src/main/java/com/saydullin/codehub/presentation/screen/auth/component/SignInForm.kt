@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.saydullin.codehub.presentation.component.button.PrimaryButton
 import com.saydullin.codehub.presentation.component.editor.input.password.PasswordInputEditor
 import com.saydullin.codehub.presentation.component.editor.input.primary.InputEditor
 import com.saydullin.domain.model.user.User
@@ -23,6 +24,7 @@ import com.saydullin.domain.model.user.User
 @Composable
 fun SignInForm(
     modifier: Modifier = Modifier,
+    header: @Composable () -> Unit,
     onSubmit: (User) -> Unit,
 ) {
 
@@ -41,13 +43,7 @@ fun SignInForm(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Spacer(modifier = Modifier.height(32.dp))
-            Text(
-                modifier = Modifier
-                    .padding(bottom = 16.dp),
-                text = "Sign in",
-                style = MaterialTheme.typography.headlineSmall
-            )
+            header()
 
             InputEditor(
                 onInputEdit = { username.value = it },
@@ -64,7 +60,7 @@ fun SignInForm(
                 placeholder = "[0-9][Aa-Zz][@#$%^&+=]",
                 label = "Password"
             )
-            Button(
+            PrimaryButton(
                 modifier = Modifier
                     .padding(top = 16.dp),
                 onClick = {
@@ -75,15 +71,14 @@ fun SignInForm(
                     )
 
                     onSubmit(user)
-                }
-            ) {
-                Text(
-                    text = "Create account",
-                    style = MaterialTheme.typography.titleLarge
-                )
-            }
+                },
+                text = "Create account",
+                textStyle = MaterialTheme.typography.titleLarge
+            )
             Spacer(modifier = Modifier.height(32.dp))
         }
     }
 
 }
+
+

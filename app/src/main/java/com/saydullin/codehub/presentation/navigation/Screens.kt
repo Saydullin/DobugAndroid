@@ -28,6 +28,13 @@ sealed class Screen(
         }
     }
 
+    data object SignedInScreen : Screen(
+        route = "signed_in_screen",
+        title = "Signed In",
+        icon = R.drawable.ic_profile,
+        activeIcon = 0,
+        isActive = false,
+    )
     data object News : Screen(
         route = "news",
         title = "News",

@@ -1,7 +1,6 @@
 package com.saydullin.codehub.presentation.navigation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -20,7 +18,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.presentation.component.navigation.bar.BottomBar
-import com.saydullin.codehub.presentation.screen.auth.SignInScreen
+import com.saydullin.codehub.presentation.screen.auth.step1.SignUpScreen
+import com.saydullin.codehub.presentation.screen.auth.step2.SignedInScreen
 import com.saydullin.codehub.presentation.screen.blog.BlogScreen
 import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
 import com.saydullin.codehub.presentation.screen.bug.BugScreen
@@ -28,7 +27,6 @@ import com.saydullin.codehub.presentation.screen.favoruite.FavouriteScreen
 import com.saydullin.codehub.presentation.screen.newBug.NewBugScreen
 import com.saydullin.codehub.presentation.screen.news.NewsScreen
 import com.saydullin.codehub.presentation.screen.notification.NotificationScreen
-import com.saydullin.codehub.presentation.screen.profile.ProfileScreen
 import com.saydullin.codehub.presentation.screen.projects.ProjectsScreen
 import com.saydullin.codehub.presentation.screen.search.SearchScreen
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
@@ -132,12 +130,17 @@ fun NavController(
 //                ProfileScreen(
 //                    navController = navController
 //                )
-                SignInScreen(
+                SignUpScreen(
                     navController = navController
                 )
             }
             composable(Screen.BugInfo.route) {
                 BugInfoScreen(
+                    navController = navController
+                )
+            }
+            composable(Screen.SignedInScreen.route) {
+                SignedInScreen(
                     navController = navController
                 )
             }

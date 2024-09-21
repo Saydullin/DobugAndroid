@@ -60,7 +60,6 @@ fun ProfileScreen(
     val bugArticles = restaurantViewModel.bugArticles.value
 
     CodeHubScreen(
-//            title = ctx.getString(R.string.profile_title),
         title = "Emily Anderson",
         appBarModifier = Modifier
             .padding(16.dp),
