@@ -1,15 +1,10 @@
-package com.saydullin.codehub.presentation.screen.auth.step1
+package com.saydullin.codehub.presentation.screen.auth.step2
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +15,10 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.presentation.component.button.HintButton
 import com.saydullin.codehub.presentation.component.button.PrimaryButton
 import com.saydullin.codehub.presentation.navigation.Screen
 import com.saydullin.codehub.presentation.screen.auth.component.SignInForm
 import com.saydullin.codehub.presentation.viewModel.AuthViewModel
-import com.saydullin.domain.model.user.User
 
 @Composable
 fun SignUpScreen(

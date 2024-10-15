@@ -1,38 +1,40 @@
 package com.saydullin.codehub.presentation.screen.newBug
 
+import android.net.Uri
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Call
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.R
-import com.saydullin.codehub.presentation.component.editor.input.attachment.InputAttachmentEditor
-import com.saydullin.codehub.presentation.component.editor.input.primary.InputEditor
-import com.saydullin.codehub.presentation.model.post.PostUI
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
+import com.saydullin.codehub.presentation.component.editor.post.ui.PostEditor
+import com.saydullin.codehub.presentation.component.editor.post.model.PostEditorTextSetting
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
-import com.saydullin.codehub.presentation.screen.newBug.component.InputLabelEditorContainer
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
 
+@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun NewBugScreen(
     navController: NavController = rememberNavController(),
@@ -42,6 +44,14 @@ fun NewBugScreen(
     val scrollState = rememberScrollState()
     val titlePost = remember { mutableStateOf("") }
     val descriptionPost = remember { mutableStateOf("") }
+    val imageUrl = "https://c4.wallpaperflare.com/wallpaper/297/22/531/lake-blue-moonlight-moon-wallpaper-preview.jpg"
+    val previewPostImage = remember { mutableStateOf<Uri?>(Uri.parse(imageUrl)) }
+
+    val pickPreviewImage = rememberLauncherForActivityResult(
+        ActivityResultContracts.PickVisualMedia()
+    ) { uri ->
+        previewPostImage.value = uri
+    }
 
     val error = postViewModel.error.value
 
@@ -50,74 +60,48 @@ fun NewBugScreen(
     }
 
     CodeHubScreen(
-        title = ctx.getString(R.string.newBug_title),
+        showBackButton = true,
+        onBackButtonClick = { navController.popBackStack() },
+        showOnlyAppBarContent = false,
+        title = "New post",
         appBarModifier = Modifier
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .verticalScroll(scrollState)
-        ) {
-            Spacer(modifier = Modifier.height(16.dp))
-            InputEditor(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp),
-                textStyle = MaterialTheme.typography.displaySmall,
-                onInputEdit = { titlePost.value = it },
-                label = "Title. Write a few words about it",
-                placeholder = "Short naming of your bug",
-                contentLimit = 100,
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            InputEditor(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp),
-                textStyle = MaterialTheme.typography.displaySmall,
-                onInputEdit = { descriptionPost.value = it },
-                isBigContent = true,
-                label = "Description. Write more about this",
-                placeholder = "Where? How? When? ...",
-                contentLimit = 1000,
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            InputAttachmentEditor(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp),
-                textStyle = MaterialTheme.typography.displaySmall,
-                onInputEdit = {},
-                icons = listOf(Icons.Default.Add, Icons.Default.Call, Icons.Default.Check),
-                label = "Attachments. Paste code, text and etc",
-                placeholder = "class Activity : AppCompatActivity() { ...",
-                contentLimit = 1000,
-            )
-            Spacer(modifier = Modifier.height(16.dp))
-            InputLabelEditorContainer()
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp)
-            ) {
-                Button(
-                    onClick = {
-                        postViewModel.savePost(
-                            PostUI(
-                                previewImages = listOf(),
-                                title = titlePost.value,
-                                description = descriptionPost.value,
-                                tags = listOf(),
-                                attachments = listOf(),
-                                type = "",
-                                status = "",
-                            )
-                        )
-                    }
-                ) {
-                    Text(text = "Publish")
-                }
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-        }
+        PostEditor(
+            onTitleEdit = {  },
+            onContentEdit = {  },
+            onAttachmentEdit = {  },
+            header = {
+//                    if (previewPostImage.value != null) {
+                    Image(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(200.dp)
+                            .clickable {
+                                pickPreviewImage.launch(
+                                    PickVisualMediaRequest(
+                                        ActivityResultContracts.PickVisualMedia.ImageOnly
+                                    )
+                                )
+                            },
+                        contentScale = ContentScale.Crop,
+                        painter = rememberImagePainter(previewPostImage.value),
+                        contentDescription = "preview image"
+                    )
+//                    }
+            },
+            titleSetting = PostEditorTextSetting(
+                placeholder = "Post Title",
+                count = 100,
+                style = MaterialTheme.typography.displayLarge
+            ),
+            descriptionSetting = PostEditorTextSetting(
+                placeholder = "Post Description",
+                count = 5000,
+                style = MaterialTheme.typography.displaySmall
+            ),
+            onSubmit = {  }
+        )
     }
 
 }

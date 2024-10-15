@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor.input.primary
+package com.saydullin.codehub.presentation.component.editor.input.util.primary
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -76,7 +76,7 @@ fun InputEditor(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = if (isBigContent) 200.dp else 0.dp)
+                .heightIn(min = if (isBigContent) 100.dp else 0.dp)
                 .border(
                     width = 2.dp,
                     color = MaterialTheme.colorScheme.outlineVariant,

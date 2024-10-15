@@ -11,16 +11,21 @@ sealed class Screen(
 ) {
 
     companion object {
+        /**
+         * Bottom bar actions
+         */
         fun getBottomBarScreens(): List<Screen> {
             return listOf(
                 Bugs,
                 Projects,
-                Favourite,
-                Notifications,
                 Profile,
+                NewBug,
             )
         }
 
+        /**
+         * Bottom Bar will be removed on this screens
+         */
         fun getExcludedBottomBarScreens(): List<Screen> {
             return listOf(
                 NewBug

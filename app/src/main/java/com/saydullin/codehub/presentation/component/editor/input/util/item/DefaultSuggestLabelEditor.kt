@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor.input.item
+package com.saydullin.codehub.presentation.component.editor.input.util.item
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme

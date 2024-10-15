@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor.input.item
+package com.saydullin.codehub.presentation.component.editor.input.util.item
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween

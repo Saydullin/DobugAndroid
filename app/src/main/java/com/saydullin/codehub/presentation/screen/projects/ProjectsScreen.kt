@@ -50,7 +50,7 @@ fun ProjectsScreen(
                 regDate = 1632873600,
                 updatedDate = 1645219200
             ),
-            tags = listOf(ArticleTag(1, "Android Dev"), ArticleTag(3, "IOS Dev"))
+            tags = listOf(ArticleTag(1, "Android"), ArticleTag(3, "IOS"))
         ),
         Project(
             id = 2,
@@ -73,7 +73,7 @@ fun ProjectsScreen(
                 regDate = 1627833600,
                 updatedDate = 1641028800
             ),
-            tags = listOf(ArticleTag(4, "Flutter Dev"), ArticleTag(6, ".Net Dev"), ArticleTag(5, "C++ Dev"))
+            tags = listOf(ArticleTag(4, "Flutter"), ArticleTag(6, ".Net"), ArticleTag(5, "C++ Dev"))
         ),
         Project(
             id = 3,
@@ -96,7 +96,7 @@ fun ProjectsScreen(
                 regDate = 1635724800,
                 updatedDate = 1643587200
             ),
-            tags = listOf(ArticleTag(7, "Java Dev"), ArticleTag(9, "Web Full Stack Dev"))
+            tags = listOf(ArticleTag(7, "Java"), ArticleTag(9, "Web Full Stack"))
         ),
         Project(
             id = 4,

@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.unit.dp
-import com.saydullin.codehub.presentation.component.editor.input.item.InputTextLabelEditor
+import com.saydullin.codehub.presentation.component.editor.input.util.item.InputTextLabelEditor
 import com.saydullin.codehub.presentation.component.editor.model.InputTextLabel
 import com.saydullin.domain.ext.filterFrom
 
@@ -49,7 +49,7 @@ fun InputLabelEditorContainer() {
     val selectItems = remember { mutableStateListOf<InputTextLabel>() }
 
     InputTextLabelEditor(
-        label = "Select some labels for your post some labels for your post",
+        label = "Select some labels for your post",
         contentPadding = PaddingValues(horizontal = 16.dp),
         onTextEdit = { text ->
             suggestItems.filterFrom(items) { it.title.lowercase() == text.lowercase() }

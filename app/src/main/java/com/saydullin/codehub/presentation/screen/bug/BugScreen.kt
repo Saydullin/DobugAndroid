@@ -10,10 +10,12 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
+import com.saydullin.codehub.R
 import com.saydullin.codehub.presentation.component.bug.BugCard
 import com.saydullin.codehub.presentation.component.search.ArticleSearch
 import com.saydullin.codehub.presentation.screen.common.CodeHubScreen
@@ -25,17 +27,13 @@ fun BugScreen(
     postViewModel: PostViewModel = hiltViewModel(),
 ) {
 
+    val ctx = LocalContext.current
     val scrollState = rememberLazyListState()
     val postsMainResponse = postViewModel.posts.value
     val postsPaging = postsMainResponse?.data
 
     CodeHubScreen(
         title = null,
-        appBarContent = {
-            ArticleSearch(
-                onActiveCallback = {}
-            )
-        },
         appBarModifier = Modifier
             .padding(bottom = 8.dp),
         showOnlyAppBarContent = true,

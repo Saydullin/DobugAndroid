@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor.input.item
+package com.saydullin.codehub.presentation.component.editor.input.util.item
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -106,7 +106,7 @@ fun InputTextLabelEditor(
         }
         Spacer(modifier = Modifier.height(8.dp))
         AnimatedVisibility(
-            visible = suggestItems.isNotEmpty(),
+            visible = suggestItems.isNotEmpty() && input.value.isNotBlank(),
             enter = expandVertically() + fadeIn(),
             exit = shrinkVertically() + fadeOut()
         ) {

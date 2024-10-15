@@ -1,5 +1,6 @@
 package com.saydullin.data.repository.auth
 
+import android.util.Log
 import com.saydullin.data.server.service.AuthService
 import com.saydullin.domain.model.user.User
 import com.saydullin.domain.repository.auth.AuthRepository
@@ -15,6 +16,8 @@ class AuthRepositoryImpl @Inject constructor(
         return try {
             val response = authService.create(user)
             val serverResponse = response.execute()
+
+            Log.e("sady", "serverResponse sign up: ${serverResponse.raw()}")
 
             if (serverResponse.isSuccessful && serverResponse.body() != null) {
                 return Resource.Success(Unit)

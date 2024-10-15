@@ -19,7 +19,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.saydullin.codehub.presentation.component.navigation.bar.BottomBar
 import com.saydullin.codehub.presentation.screen.auth.step1.SignUpScreen
-import com.saydullin.codehub.presentation.screen.auth.step2.SignedInScreen
+import com.saydullin.codehub.presentation.screen.auth.step3.SignedInScreen
 import com.saydullin.codehub.presentation.screen.blog.BlogScreen
 import com.saydullin.codehub.presentation.screen.bug.BugInfoScreen
 import com.saydullin.codehub.presentation.screen.bug.BugScreen

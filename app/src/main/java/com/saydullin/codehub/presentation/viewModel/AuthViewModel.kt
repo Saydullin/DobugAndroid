@@ -19,6 +19,14 @@ class AuthViewModel @Inject constructor(
     private val _status = mutableStateOf<Resource<Unit>?>(null)
     val status = _status
 
+    fun signUp(user: User) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val createResource = createAccountUseCase.execute(user)
+
+            _status.value = createResource
+        }
+    }
+
     fun signIn(user: User) {
         viewModelScope.launch(Dispatchers.IO) {
             val createResource = createAccountUseCase.execute(user)

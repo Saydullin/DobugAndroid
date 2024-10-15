@@ -17,8 +17,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.saydullin.codehub.presentation.component.button.PrimaryButton
-import com.saydullin.codehub.presentation.component.editor.input.password.PasswordInputEditor
-import com.saydullin.codehub.presentation.component.editor.input.primary.InputEditor
+import com.saydullin.codehub.presentation.component.editor.input.util.password.PasswordInputEditor
+import com.saydullin.codehub.presentation.component.editor.input.util.primary.InputEditor
 import com.saydullin.domain.model.user.User
 
 @Composable

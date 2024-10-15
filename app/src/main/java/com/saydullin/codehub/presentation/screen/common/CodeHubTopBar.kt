@@ -17,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.saydullin.codehub.presentation.util.TopBarBehavior
 
@@ -69,13 +70,17 @@ fun CodeHubTopBar(
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
                             text = title,
-                            style = MaterialTheme.typography.headlineSmall,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            style = MaterialTheme.typography.displayLarge,
                         )
                     }
                 } else {
                     Text(
                         text = title,
-                        style = MaterialTheme.typography.headlineSmall,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        style = MaterialTheme.typography.displayLarge,
                     )
                 }
             }

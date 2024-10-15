@@ -2,7 +2,7 @@ package com.saydullin.codehub.presentation.component.navigation.bar
 
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.BottomAppBarDefaults
 import androidx.compose.material3.FloatingActionButton
@@ -56,8 +56,8 @@ fun BottomBar(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                    val route = Screen.NewBug.route
-                    navController.navigate(Screen.NewBug.route) {
+                    val route = Screen.Search.route
+                    navController.navigate(Screen.Search.route) {
                         popUpTo(navController.graph.findStartDestination().id)
                     }
                     selectedRoute.value = route
@@ -66,7 +66,7 @@ fun BottomBar(
                 elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation()
             ) {
                 Icon(
-                    Icons.Filled.Add,
+                    Icons.Filled.Search,
                     contentDescription = "Localized description"
                 )
             }

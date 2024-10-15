@@ -17,7 +17,7 @@ fun BugInfoScreen(
 ) {
 
     CodeHubScreen(
-        title = "Bug Info",
+        title = "Ошибка с запуском приложения с параметром PID процесса",
         appBarModifier = Modifier
             .padding(8.dp),
         showBackButton = true,

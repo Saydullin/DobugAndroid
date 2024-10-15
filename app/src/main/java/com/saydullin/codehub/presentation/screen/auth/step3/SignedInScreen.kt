@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.screen.auth.step2
+package com.saydullin.codehub.presentation.screen.auth.step3
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

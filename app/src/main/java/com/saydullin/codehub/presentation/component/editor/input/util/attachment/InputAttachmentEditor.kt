@@ -1,4 +1,4 @@
-package com.saydullin.codehub.presentation.component.editor.input.attachment
+package com.saydullin.codehub.presentation.component.editor.input.util.attachment
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
