@@ -1,5 +1,6 @@
 package com.saydullin.codehub.presentation.screen.newBug
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,6 +12,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -30,10 +32,14 @@ fun NewBugScreen(
     postViewModel: PostViewModel = hiltViewModel(),
     tagViewModel: TagViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
     val title = remember { mutableStateOf("") }
     val description = remember { mutableStateOf("") }
 
     val tags = tagViewModel.tags.value
+    val error = tagViewModel.error.value
+
+    Toast.makeText(context, "Error: ${error?.status} ${error?.message}", Toast.LENGTH_LONG).show()
 
     DisposableEffect(Unit) {
         title.value = newPostViewModel.title.value

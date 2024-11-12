@@ -1,5 +1,6 @@
 package com.saydullin.data.repository.tag
 
+import android.util.Log
 import com.saydullin.data.server.service.TagService
 import com.saydullin.domain.model.tag.Tag
 import com.saydullin.domain.repository.tag.TagServerRepository
@@ -13,8 +14,10 @@ class TagServerRepositoryImpl @Inject constructor(
 
     override suspend fun getAllTags(): Resource<List<Tag>> {
         return Resource.tryWith(StatusType.SERVER_ERROR) {
-            val tagResponse = tagService.getAllTags()
+            val tagCall = tagService.getAllTags()
+            val tagResponse = tagCall.execute()
 
+            Log.d("sady", "tagResponse $tagResponse")
             if (tagResponse.isSuccessful && tagResponse.body()?.isSuccess == true) {
                 return@tryWith tagResponse.body()?.data ?: throw Exception("No data")
             }

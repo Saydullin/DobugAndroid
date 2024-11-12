@@ -1,5 +1,7 @@
 package com.saydullin.domain.util.response
 
+import android.util.Log
+
 sealed class Resource<T>(
     val data: T? = null,
     val status: StatusType = StatusType.UNKNOWN_ERROR,
@@ -12,6 +14,7 @@ sealed class Resource<T>(
             return try {
                 Success(scope())
             } catch (e: Exception) {
+                Log.e("sady", "tagResponse $errorStatus", e)
                 Error(
                     e = e,
                     status = errorStatus
