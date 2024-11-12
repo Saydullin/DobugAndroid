@@ -31,7 +31,7 @@ class PostServerRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getById(id: Int): Resource<MainResponse<Post?>> {
+    override suspend fun getById(id: Long): Resource<MainResponse<Post?>> {
         return try {
             val allPosts = postService.getById(id)
             val postsResponse = allPosts.execute()
@@ -41,6 +41,7 @@ class PostServerRepositoryImpl @Inject constructor(
                 throw Exception("getById($id) posts from server not successful: ${postsResponse.raw()}")
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             Resource.Error(
                 e = e,
                 status = StatusType.SERVER_ERROR

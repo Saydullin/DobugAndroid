@@ -9,6 +9,8 @@ enum class StatusType {
     DATA_ERROR,
     DATA_NOT_FOUND,
     SIGN_IN_ERROR,
+
+    NO_POST_INFO,
 }
 
 

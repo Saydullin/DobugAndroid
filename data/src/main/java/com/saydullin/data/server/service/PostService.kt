@@ -8,16 +8,17 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PostService {
 
     @GET("posts")
     fun getAll(): Call<MainResponse<Paging<Post>>>
 
-    @GET("post/{id}")
-    fun getById(@Path("id") id: Int): Call<MainResponse<Post?>>
+    @GET("post")
+    fun getById(@Query("id") id: Long): Call<MainResponse<Post?>>
 
-    @POST("/post")
+    @POST("post")
     fun savePost(@Body post: Post): Call<Unit>
 
 }

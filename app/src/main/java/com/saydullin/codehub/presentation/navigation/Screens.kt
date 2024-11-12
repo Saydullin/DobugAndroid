@@ -97,7 +97,7 @@ sealed class Screen(
         isActive = false,
     )
     data object BugInfo : Screen(
-        route = "bugInfo",
+        route = "bugInfo/{postId}",
         title = "Bug Info",
         icon = R.drawable.ic_bug,
         activeIcon = 0,

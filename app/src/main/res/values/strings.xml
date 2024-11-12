@@ -16,4 +16,5 @@
     <string name="favourite_title">Favourite</string>
     <string name="profile_title">Profile</string>
     <string name="newBug_title">New Bug</string>
+    <string name="publish">Опубликовать</string>
 </resources>

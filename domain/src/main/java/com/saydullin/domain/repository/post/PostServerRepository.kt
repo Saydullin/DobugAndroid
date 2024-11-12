@@ -9,7 +9,7 @@ interface PostServerRepository {
 
     suspend fun getAll(): Resource<MainResponse<Paging<Post>>>
 
-    suspend fun getById(id: Int): Resource<MainResponse<Post?>>
+    suspend fun getById(id: Long): Resource<MainResponse<Post?>>
 
     suspend fun savePost(post: Post): Resource<Unit>
 

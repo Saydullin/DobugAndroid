@@ -7,6 +7,19 @@ sealed class Resource<T>(
     val message: String = "null",
 ) {
 
+    companion object {
+        fun <T> tryWith(errorStatus: StatusType, scope: () -> T): Resource<T> {
+            return try {
+                Success(scope())
+            } catch (e: Exception) {
+                Error(
+                    e = e,
+                    status = errorStatus
+                )
+            }
+        }
+    }
+
     fun isSuccessData(): Boolean {
         return this is Success<T> && this.data != null
     }

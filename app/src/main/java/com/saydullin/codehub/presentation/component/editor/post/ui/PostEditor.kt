@@ -2,6 +2,7 @@ package com.saydullin.codehub.presentation.component.editor.post.ui
 
 import android.net.Uri
 import android.widget.Space
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -15,54 +16,64 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.saydullin.codehub.R
 import com.saydullin.codehub.presentation.component.editor.post.model.PostEditorSettings
 import com.saydullin.codehub.presentation.component.editor.post.model.PostEditorTextSetting
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PostEditor(
     modifier: Modifier = Modifier,
-    header: (@Composable () -> Unit)? = null,
-    footer: (@Composable () -> Unit)? = null,
     settings: PostEditorSettings = PostEditorSettings.default,
+    titleDefault: String = "",
     onTitleEdit: ((String) -> Unit),
+    contentDefault: String = "",
     onContentEdit: (String) -> Unit,
     onAttachmentEdit: (List<Uri>) -> Unit,
     titleSetting: PostEditorTextSetting = PostEditorTextSetting.default,
     descriptionSetting: PostEditorTextSetting = PostEditorTextSetting.default,
-    onSubmit: () -> Unit
+    onSubmit: () -> Unit,
+    header: (@Composable () -> Unit)? = null,
+    footer: (@Composable () -> Unit)? = null,
+    content: (LazyListScope.() -> Unit)? = null,
 ) {
 
-    val titleInput = remember { mutableStateOf("") }
-    val descriptionInput = remember { mutableStateOf("") }
-    val attachmentsUri = remember { mutableStateOf<List<Uri>>(listOf()) }
-    val pickMultipleMedia = rememberLauncherForActivityResult(
-        ActivityResultContracts.PickMultipleVisualMedia(settings.attachment.count)
-    ) { uris ->
-        if (uris.isNotEmpty()) {
-            attachmentsUri.value = uris
-        }
-    }
+    val titleInput = remember { mutableStateOf(titleDefault) }
+    val descriptionInput = remember { mutableStateOf(contentDefault) }
 
     LazyColumn(
         modifier = modifier,
     ) {
+
         if (header != null) {
             item {
                 header.invoke()
             }
         }
+
+        content?.invoke(this@LazyColumn)
+
+        item {
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = "Выберите тег"
+            )
+        }
+
         item {
             Spacer(modifier = Modifier.height(16.dp))
             TextField(
@@ -95,9 +106,7 @@ fun PostEditor(
                 ),
             )
         }
-        stickyHeader {
-            PostAttachmentBarEditor()
-        }
+
         item {
             TextField(
                 modifier = Modifier
@@ -128,11 +137,23 @@ fun PostEditor(
                 ),
             )
         }
+
+        item {
+            Button(
+                onClick = onSubmit
+            ) {
+                Text(
+                    text = stringResource(R.string.publish)
+                )
+            }
+        }
+
         if (footer != null) {
             item {
                 footer.invoke()
             }
         }
+
     }
 
 }

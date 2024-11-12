@@ -44,7 +44,7 @@ fun ShortBugCard(
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .clickable {
-                navController.navigate(Screen.BugInfo.route)
+                navController.navigate(Screen.BugInfo.route + "/${bugArticle.id}")
             }
     ) {
         Box(

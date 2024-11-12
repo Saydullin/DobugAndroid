@@ -2,14 +2,13 @@ package com.saydullin.codehub.presentation.screen.auth.step1
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
+//noinspection UsingMaterialAndMaterial3Libraries
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,12 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.presentation.component.button.HintButton
 import com.saydullin.codehub.presentation.component.button.PrimaryButton
 import com.saydullin.codehub.presentation.navigation.Screen
 import com.saydullin.codehub.presentation.screen.auth.component.SignInForm
 import com.saydullin.codehub.presentation.viewModel.AuthViewModel
-import com.saydullin.domain.model.user.User
+import com.saydullin.domain.util.response.Resource
 
 @Composable
 fun SignUpScreen(
@@ -35,9 +33,30 @@ fun SignUpScreen(
 
     val context = LocalContext.current
     val status = authViewModel.status.value
+    val loading = authViewModel.loading.value
 
-    if (status?.status != null) {
-        Toast.makeText(context, "status ${status.status}, message ${status.message}", Toast.LENGTH_SHORT).show()
+    if (status is Resource.Success) {
+        if (status.data?.isSuccess == true) {
+            navController.navigate(Screen.SignedInScreen.route)
+        } else {
+            Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
+        }
+
+        authViewModel.reset()
+    } else if (status?.message != null) {
+        Toast.makeText(context, status.message, Toast.LENGTH_SHORT).show()
+    }
+
+    if (loading) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator()
+        }
+
+        return
     }
 
     LazyColumn {
@@ -69,8 +88,7 @@ fun SignUpScreen(
                     }
                 },
                 onSubmit = {
-                    authViewModel.signUp(it)
-                    navController.navigate(Screen.SignedInScreen.route)
+                    authViewModel.signUpServer(it)
                 }
             )
         }

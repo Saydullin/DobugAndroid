@@ -62,7 +62,7 @@ fun SignUpScreen(
                     }
                 },
                 onSubmit = {
-                    authViewModel.signUp(it)
+                    authViewModel.signUpServer(it)
                     navController.navigate(Screen.SignedInScreen.route)
                 }
             )

@@ -13,10 +13,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.saydullin.codehub.presentation.component.navigation.bar.BottomBar
 import com.saydullin.codehub.presentation.screen.auth.step1.SignUpScreen
 import com.saydullin.codehub.presentation.screen.auth.step3.SignedInScreen
@@ -29,13 +31,19 @@ import com.saydullin.codehub.presentation.screen.news.NewsScreen
 import com.saydullin.codehub.presentation.screen.notification.NotificationScreen
 import com.saydullin.codehub.presentation.screen.projects.ProjectsScreen
 import com.saydullin.codehub.presentation.screen.search.SearchScreen
+import com.saydullin.codehub.presentation.viewModel.NewPostViewModel
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
+import com.saydullin.codehub.presentation.viewModel.TagViewModel
 
 @Composable
 fun NavController(
     navController: NavHostController = rememberNavController(),
-    postViewModel: PostViewModel = hiltViewModel()
+    newPostViewModel: NewPostViewModel = hiltViewModel(),
+    postViewModel: PostViewModel = hiltViewModel(),
+    tagViewModel: TagViewModel = hiltViewModel(),
 ) {
+
+    newPostViewModel.exportFieldsContent()
 
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
     val excludedBottomBarScreens = Screen.getExcludedBottomBarScreens()
@@ -73,8 +81,18 @@ fun NavController(
                     navController = navController
                 )
             }
-            composable(Screen.BugInfo.route) {
+            composable(
+                route = Screen.BugInfo.route,
+                arguments = listOf(
+                    navArgument("postId") {
+                        type = NavType.LongType
+                    }
+                )
+            ) {
+                val postId = navController.currentBackStackEntry?.arguments?.getLong("postId")
+
                 BugInfoScreen(
+                    postId = postId,
                     navController = navController
                 )
             }
@@ -108,7 +126,9 @@ fun NavController(
                 }
             ) {
                 NewBugScreen(
-                    navController = navController
+                    navController = navController,
+                    newPostViewModel = newPostViewModel,
+                    tagViewModel = tagViewModel,
                 )
             }
             composable(Screen.Projects.route) {
@@ -131,11 +151,6 @@ fun NavController(
 //                    navController = navController
 //                )
                 SignUpScreen(
-                    navController = navController
-                )
-            }
-            composable(Screen.BugInfo.route) {
-                BugInfoScreen(
                     navController = navController
                 )
             }

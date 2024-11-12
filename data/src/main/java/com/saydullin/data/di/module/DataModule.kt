@@ -6,22 +6,32 @@ import com.saydullin.data.database.AppDatabase
 import com.saydullin.data.database.converter.IntListConverter
 import com.saydullin.data.database.dao.ArticleDao
 import com.saydullin.data.database.dao.PostDao
+import com.saydullin.data.database.dao.TagDao
 import com.saydullin.data.di.mapper.post.PostEntityToPostMapper
 import com.saydullin.data.di.mapper.post.PostToPostEntityMapper
+import com.saydullin.data.di.mapper.tag.TagEntityToTagMapper
+import com.saydullin.data.di.mapper.tag.TagToTagEntityMapper
 import com.saydullin.data.repository.ArticleRepositoryImpl
 import com.saydullin.data.repository.BugArticleRepositoryImpl
 import com.saydullin.data.repository.auth.AuthRepositoryImpl
 import com.saydullin.data.repository.post.PostLocalRepositoryImpl
 import com.saydullin.data.repository.post.PostServerRepositoryImpl
+import com.saydullin.data.repository.tag.TagLocalRepositoryImpl
+import com.saydullin.data.repository.tag.TagServerRepositoryImpl
 import com.saydullin.data.server.RetrofitBuilder
 import com.saydullin.data.server.service.AuthService
 import com.saydullin.data.server.service.PostService
+import com.saydullin.data.server.service.TagService
+import com.saydullin.data.sharedPref.NewPostSharedPreferencesImpl
 import com.saydullin.domain.di.qualifiers.BaseUrl
 import com.saydullin.domain.repository.ArticleRepository
 import com.saydullin.domain.repository.BugArticleRepository
 import com.saydullin.domain.repository.auth.AuthRepository
 import com.saydullin.domain.repository.post.PostLocalRepository
 import com.saydullin.domain.repository.post.PostServerRepository
+import com.saydullin.domain.repository.sharedPref.NewPostSharedPreferences
+import com.saydullin.domain.repository.tag.TagLocalRepository
+import com.saydullin.domain.repository.tag.TagServerRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,8 +81,20 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideTagService(retrofit: Retrofit): TagService {
+        return retrofit.create(TagService::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideArticleDao(appDatabase: AppDatabase): ArticleDao {
         return appDatabase.articleDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideTagDao(appDatabase: AppDatabase): TagDao {
+        return appDatabase.tagDao()
     }
 
     @Provides
@@ -93,6 +115,16 @@ class DataModule {
 
     @Provides
     @Singleton
+    fun provideNewPostSharedPreferences(
+        @ApplicationContext context: Context
+    ): NewPostSharedPreferences {
+        return NewPostSharedPreferencesImpl(
+            context = context
+        )
+    }
+
+    @Provides
+    @Singleton
     fun postLocalRepository(
         postDao: PostDao,
         postEntityToPostMapper: PostEntityToPostMapper,
@@ -102,6 +134,30 @@ class DataModule {
             postDao = postDao,
             postEntityToPostMapper = postEntityToPostMapper,
             postToPostEntityMapper = postToPostEntityMapper,
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideTagServerRepository(
+        tagService: TagService
+    ): TagServerRepository {
+        return TagServerRepositoryImpl(
+            tagService = tagService
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideTagLocalRepository(
+        tagDao: TagDao,
+        tagEntityMapper: TagEntityToTagMapper,
+        tagToTagEntityMapper: TagToTagEntityMapper,
+    ): TagLocalRepository {
+        return TagLocalRepositoryImpl(
+            tagDao = tagDao,
+            tagEntityMapper = tagEntityMapper,
+            tagMapper = tagToTagEntityMapper,
         )
     }
 
