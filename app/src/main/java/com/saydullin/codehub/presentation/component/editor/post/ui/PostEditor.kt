@@ -38,7 +38,6 @@ import com.saydullin.codehub.presentation.component.editor.post.model.PostEditor
 @Composable
 fun PostEditor(
     modifier: Modifier = Modifier,
-    settings: PostEditorSettings = PostEditorSettings.default,
     titleDefault: String = "",
     onTitleEdit: ((String) -> Unit),
     contentDefault: String = "",
@@ -66,13 +65,6 @@ fun PostEditor(
         }
 
         content?.invoke(this@LazyColumn)
-
-        item {
-            Text(
-                modifier = Modifier.padding(horizontal = 16.dp),
-                text = "Выберите тег"
-            )
-        }
 
         item {
             Spacer(modifier = Modifier.height(16.dp))
@@ -139,7 +131,9 @@ fun PostEditor(
         }
 
         item {
+            Spacer(modifier = Modifier.height(70.dp))
             Button(
+                modifier = Modifier.padding(horizontal = 16.dp),
                 onClick = onSubmit
             ) {
                 Text(

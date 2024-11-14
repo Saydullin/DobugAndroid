@@ -5,8 +5,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MenuAnchorType
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.saydullin.codehub.presentation.component.editor.dropdown.DropdownList
 import com.saydullin.codehub.presentation.component.editor.post.ui.PostEditor
 import com.saydullin.codehub.presentation.component.editor.post.model.PostEditorTextSetting
 import com.saydullin.codehub.presentation.model.post.PostUI
@@ -25,6 +32,7 @@ import com.saydullin.codehub.presentation.viewModel.NewPostViewModel
 import com.saydullin.codehub.presentation.viewModel.PostViewModel
 import com.saydullin.codehub.presentation.viewModel.TagViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewBugScreen(
     navController: NavController = rememberNavController(),
@@ -90,15 +98,12 @@ fun NewBugScreen(
             }
         ) {
             if (tags != null) {
-                items(tags) {
-                    Card(
-                        onClick = {  }
-                    ) {
-                        Text(
-                            modifier = Modifier.padding(16.dp),
-                            text = it.title
-                        )
-                    }
+                item {
+                    DropdownList(
+                        placeholder = "Напишите тег",
+                        onSearch = {  },
+                        items = tags.map { it.title }
+                    )
                 }
             }
         }
