@@ -2,17 +2,8 @@ package com.saydullin.codehub.presentation.screen.newBug
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Card
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MenuAnchorType
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.mutableStateOf
@@ -23,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.saydullin.codehub.presentation.component.editor.dropdown.DropdownList
+import com.saydullin.codehub.presentation.component.editor.dropdown.DropdownGridList
 import com.saydullin.codehub.presentation.component.editor.post.ui.PostEditor
 import com.saydullin.codehub.presentation.component.editor.post.model.PostEditorTextSetting
 import com.saydullin.codehub.presentation.model.post.PostUI
@@ -47,7 +38,9 @@ fun NewBugScreen(
     val tags = tagViewModel.tags.value
     val error = tagViewModel.error.value
 
-    Toast.makeText(context, "Error: ${error?.status} ${error?.message}", Toast.LENGTH_LONG).show()
+    if (error?.status != null) {
+        Toast.makeText(context, "Error: ${error.status} ${error.message}", Toast.LENGTH_LONG).show()
+    }
 
     DisposableEffect(Unit) {
         title.value = newPostViewModel.title.value
@@ -65,7 +58,7 @@ fun NewBugScreen(
         showOnlyAppBarContent = false,
         title = "New post",
         appBarModifier = Modifier
-            .padding(vertical = 16.dp, horizontal = 8.dp)
+            .padding(horizontal = 8.dp)
     ) {
         PostEditor(
             titleDefault = title.value,
@@ -99,7 +92,7 @@ fun NewBugScreen(
         ) {
             if (tags != null) {
                 item {
-                    DropdownList(
+                    DropdownGridList(
                         placeholder = "Напишите тег",
                         onSearch = {  },
                         items = tags.map { it.title }

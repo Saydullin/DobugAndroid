@@ -2,9 +2,9 @@ package com.saydullin.codehub.presentation.component.editor.dropdown
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,8 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun DropdownList(
+fun DropdownGridList(
     modifier: Modifier = Modifier,
     placeholder: String,
     onSearch: (text: String) -> Unit,
@@ -30,11 +31,12 @@ fun DropdownList(
     Column(
         modifier = modifier
     ) {
-        LazyRow(
+        FlowRow(
+            modifier = Modifier
+                .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp)
         ) {
-            items(items) {
+            items.sorted().forEach {
                 FilterChip(
                     label = {
                         Text(
